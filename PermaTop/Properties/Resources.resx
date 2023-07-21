@@ -100,4 +100,10 @@
   <data name="PermaTop" xml:space="preserve">
     <value>PermaTop</value>
   </data>
+  <data name="Minimize" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>
