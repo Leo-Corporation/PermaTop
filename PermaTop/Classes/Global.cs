@@ -21,46 +21,43 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
-using PermaTop.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace PermaTop;
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class MainWindow : Window
+namespace PermaTop.Classes;
+public static class Global
 {
-	public MainWindow()
+	public static string GetHiSentence
 	{
-		InitializeComponent();
-		InitUI();
+		get
+		{
+			if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour <= 7) // If between 9PM & 7AM
+			{
+				return Properties.Resources.GoodNight + ", " + Environment.UserName + "."; // Return the correct value
+			}
+			else if (DateTime.Now.Hour >= 7 && DateTime.Now.Hour <= 12) // If between 7AM - 12PM
+			{
+				return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
+			}
+			else if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour <= 17) // If between 12PM - 5PM
+			{
+				return Properties.Resources.GoodAfternoon + ", " + Environment.UserName + "."; // Return the correct value
+			}
+			else if (DateTime.Now.Hour >= 17 && DateTime.Now.Hour <= 21) // If between 5PM - 9PM
+			{
+				return Properties.Resources.GoodEvening + ", " + Environment.UserName + "."; // Return the correct value
+			}
+			else
+			{
+				return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
+			}
+		}
 	}
 
-	private void InitUI()
-	{
-		HelloTxt.Text = Global.GetHiSentence;
-	}
-
-	private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
-	{
-		WindowState = WindowState.Minimized;
-	}
-
-	private void CloseBtn_Click(object sender, RoutedEventArgs e)
-	{
-		Application.Current.Shutdown();
-	}
+	public static SolidColorBrush GetSolidColor(string resource) => (SolidColorBrush)Application.Current.Resources[resource];
 }

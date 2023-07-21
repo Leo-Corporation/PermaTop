@@ -70,6 +70,42 @@ namespace PermaTop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Good afternoon.
+        /// </summary>
+        public static string GoodAfternoon {
+            get {
+                return ResourceManager.GetString("GoodAfternoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good evening.
+        /// </summary>
+        public static string GoodEvening {
+            get {
+                return ResourceManager.GetString("GoodEvening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good night.
+        /// </summary>
+        public static string GoodNight {
+            get {
+                return ResourceManager.GetString("GoodNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi.
+        /// </summary>
+        public static string Hi {
+            get {
+                return ResourceManager.GetString("Hi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimize.
         /// </summary>
         public static string Minimize {
