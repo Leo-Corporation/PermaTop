@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using PermaTop.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,8 @@ using System.Windows.Media;
 namespace PermaTop.Classes;
 public static class Global
 {
+	public static PinWindowsPage? PinWindowsPage { get; set; }
+
 	public static string GetHiSentence
 	{
 		get

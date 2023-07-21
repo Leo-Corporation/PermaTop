@@ -21,6 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using PermaTop.Classes;
+using PermaTop.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +52,11 @@ public partial class PinWindowsPage : Page
 
 	private void InitUI()
 	{
-		//TODO: Add WindowItems
+		WindowDisplayer.Children.Clear();
+		var openedWindows = Global.GetWindows();
+		for (int i = 0; i < openedWindows.Count; i++)
+		{
+			WindowDisplayer.Children.Add(new WindowPropertyItem(openedWindows[i]));
+		}
 	}
 }

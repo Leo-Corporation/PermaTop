@@ -52,6 +52,7 @@ public partial class MainWindow : Window
 	private void InitUI()
 	{
 		HelloTxt.Text = Global.GetHiSentence;
+		PageContent.Navigate(Global.PinWindowsPage);
 	}
 
 	private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
