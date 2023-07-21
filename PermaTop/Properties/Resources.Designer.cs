@@ -122,5 +122,14 @@ namespace PermaTop.Properties {
                 return ResourceManager.GetString("PermaTop", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pin Windows.
+        /// </summary>
+        public static string PinWindows {
+            get {
+                return ResourceManager.GetString("PinWindows", resourceCulture);
+            }
+        }
     }
 }
