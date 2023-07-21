@@ -54,6 +54,6 @@ public partial class WindowPropertyItem : UserControl
 
 	private void InitUI()
 	{
-		TitleTxt.Text = WindowInfo.Title;
+		TitleTxt.Text = WindowInfo.Title.Length > 50 ? WindowInfo.Title[0..50] + "..." : WindowInfo.Title;
 	}
 }
