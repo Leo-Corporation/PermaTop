@@ -17,8 +17,8 @@
 	<Window.Resources>
 		<Style x:Key="WindowMainPanelStyle" TargetType="{x:Type Border}">
 			<Setter Property="BorderBrush" Value="{DynamicResource WindowBorderBrush}" />
-            <Setter Property="BorderThickness" Value="1" />
-        </Style>
+			<Setter Property="BorderThickness" Value="1" />
+		</Style>
 		<Style x:Key="TitleBarButtonStyle" TargetType="Button">
 			<Setter Property="Foreground" Value="White" />
 			<Setter Property="Padding" Value="0" />
