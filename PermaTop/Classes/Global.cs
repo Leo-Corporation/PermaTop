@@ -24,6 +24,7 @@ SOFTWARE.
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -60,4 +61,54 @@ public static class Global
 	}
 
 	public static SolidColorBrush GetSolidColor(string resource) => (SolidColorBrush)Application.Current.Resources[resource];
+
+	// Import the SetWindowPos function from user32.dll
+	[DllImport("user32.dll")]
+	static extern bool SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
+	// Import the FindWindow function from user32.dll
+	[DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+	static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+	// Import the GetClassName function from user32.dll
+	[DllImport("user32.dll", CharSet = CharSet.Unicode)]
+	static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
+	private delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+
+	[DllImport("user32.dll")]
+	[return: MarshalAs(UnmanagedType.Bool)]
+	private static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
+
+	[DllImport("user32.dll", CharSet = CharSet.Unicode)]
+	private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpWindowText, int nMaxCount);
+
+	[DllImport("user32.dll")]
+	private static extern bool IsWindowVisible(IntPtr hWnd);
+
+	public static List<WindowInfo> GetWindows()
+	{
+		List<WindowInfo> windowInfos = new();
+		EnumWindows((hWnd, lParam) =>
+		{
+			if (IsWindowVisible(hWnd))
+			{
+				StringBuilder titleBuilder = new StringBuilder(256);
+				GetWindowText(hWnd, titleBuilder, titleBuilder.Capacity);
+				string windowTitle = titleBuilder.ToString();
+
+				StringBuilder classBuilder = new StringBuilder(256);
+				GetClassName(hWnd, classBuilder, classBuilder.Capacity);
+				string className = classBuilder.ToString();
+
+				if (!string.IsNullOrEmpty(windowTitle))
+				{
+					windowInfos.Add(new(windowTitle, className, false));
+				}
+			}
+
+			return true;
+		}, IntPtr.Zero);
+		return windowInfos;
+	}
 }
