@@ -21,17 +21,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using System;
+
 namespace PermaTop.Classes;
 public class WindowInfo
 {
 	public string Title { get; set; }
 	public string ClassName { get; set; }
 	public bool IsPinned { get; set; }
+	public IntPtr Hwnd { get; set; }
 
-	public WindowInfo(string title, string className, bool pinned)
+	public WindowInfo(string title, string className, bool pinned, IntPtr hWnd)
 	{
 		Title = title;
 		ClassName = className;
 		IsPinned = pinned;
+		Hwnd = hWnd;
 	}
 }

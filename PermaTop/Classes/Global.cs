@@ -24,6 +24,7 @@ SOFTWARE.
 using PermaTop.Pages;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -101,12 +102,18 @@ public static class Global
 	[DllImport("user32.dll")]
 	private static extern bool IsWindowVisible(IntPtr hWnd);
 
+	[DllImport("user32.dll")]
+	private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+	[DllImport("user32.dll")]
+	private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
 	public static List<WindowInfo> GetWindows()
 	{
 		List<WindowInfo> windowInfos = new();
 		EnumWindows((hWnd, lParam) =>
 		{
-			if (IsWindowVisible(hWnd))
+			if (IsWindowVisible(hWnd) && !IsWindowUwp(hWnd))
 			{
 				StringBuilder titleBuilder = new StringBuilder(256);
 				GetWindowText(hWnd, titleBuilder, titleBuilder.Capacity);
@@ -118,7 +125,7 @@ public static class Global
 
 				if (!string.IsNullOrEmpty(windowTitle))
 				{
-					windowInfos.Add(new(windowTitle, className, false));
+					windowInfos.Add(new(windowTitle, className, IsWindowPinned(hWnd), hWnd));
 				}
 			}
 
