@@ -63,6 +63,18 @@ public static class Global
 		}
 	}
 
+	internal const int GWL_EXSTYLE = -20;
+	internal const int WS_EX_TOPMOST = 0x0008;
+
+	internal const int HWND_TOPMOST = -1;
+	internal const int HWND_NOTOPMOST = -2;
+
+	internal const uint SWP_NOMOVE = 0x0002;
+	internal const uint SWP_NOSIZE = 0x0001;
+
+	internal const int GWL_STYLE = -16;
+	internal const int WS_VISIBLE = 0x10000000;
+
 	public static SolidColorBrush GetSolidColor(string resource) => (SolidColorBrush)Application.Current.Resources[resource];
 
 	// Import the SetWindowPos function from user32.dll
