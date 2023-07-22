@@ -141,4 +141,16 @@
   <data name="PinWindows" xml:space="preserve">
     <value>Épingler des fenêtres</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="Pin" xml:space="preserve">
+    <value>Épingler</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favoris</value>
+  </data>
 </root>
