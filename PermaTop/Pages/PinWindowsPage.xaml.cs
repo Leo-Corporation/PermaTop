@@ -59,4 +59,9 @@ public partial class PinWindowsPage : Page
 			WindowDisplayer.Children.Add(new WindowPropertyItem(openedWindows[i]));
 		}
 	}
+
+	private void RefreshBtn_Click(object sender, RoutedEventArgs e)
+	{
+		InitUI();
+	}
 }
