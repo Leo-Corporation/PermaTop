@@ -126,6 +126,19 @@ public static class Global
 		}, IntPtr.Zero);
 		return windowInfos;
 	}
+	public static bool IsWindowPinned(IntPtr hWnd)
+	{
+		if (hWnd == IntPtr.Zero)
+		{
+			Console.WriteLine("Window not found!");
+			return false;
+		}
+
+		int exStyle = GetWindowLong(hWnd, GWL_EXSTYLE);
+
+		return (exStyle & WS_EX_TOPMOST) == WS_EX_TOPMOST;
+	}
+
 	public static bool IsWindowUwp(IntPtr hWnd)
 	{
 		int style = GetWindowLong(hWnd, GWL_STYLE);
