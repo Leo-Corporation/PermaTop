@@ -126,4 +126,17 @@ public static class Global
 		}, IntPtr.Zero);
 		return windowInfos;
 	}
+	public static bool IsWindowUwp(IntPtr hWnd)
+	{
+		int style = GetWindowLong(hWnd, GWL_STYLE);
+		if ((style & WS_VISIBLE) == 0) // Exclude invisible windows
+			return false;
+
+		uint processId;
+		GetWindowThreadProcessId(hWnd, out processId);
+		Process process = Process.GetProcessById((int)processId);
+
+		// UWP apps typically run under the "ApplicationFrameHost" process name
+		return process.ProcessName.Equals("ApplicationFrameHost", StringComparison.OrdinalIgnoreCase);
+	}
 }
