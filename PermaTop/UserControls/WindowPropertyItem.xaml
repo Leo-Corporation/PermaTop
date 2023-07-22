@@ -8,8 +8,8 @@
 			 Height="50" d:DesignWidth="800">
 	<Border CornerRadius="10" Padding="5" Margin="5" Background="{DynamicResource CardBackground}">
 		<Border.Effect>
-			<DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="10" Opacity="0.4" RenderingBias="Quality" />
-		</Border.Effect>
+            <DropShadowEffect BlurRadius="10" Color="#1F1F1F" Direction="270" Opacity="0.1" ShadowDepth="0"/>
+        </Border.Effect>
 
 		<Grid>
 			<Grid.ColumnDefinitions>
