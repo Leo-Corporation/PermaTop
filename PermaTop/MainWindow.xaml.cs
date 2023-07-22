@@ -64,4 +64,14 @@ public partial class MainWindow : Window
 	{
 		Application.Current.Shutdown();
 	}
+
+	private void PinPageBtn_Click(object sender, RoutedEventArgs e)
+	{
+
+	}
+
+	private void SettingsPageBtn_Click(object sender, RoutedEventArgs e)
+	{
+
+	}
 }
