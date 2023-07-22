@@ -55,6 +55,15 @@ public partial class WindowPropertyItem : UserControl
 	private void InitUI()
 	{
 		TitleTxt.Text = WindowInfo.Title.Length > 50 ? WindowInfo.Title[0..50] + "..." : WindowInfo.Title;
-		TitleToolTip.Content = WindowInfo.Title;
+		TitleToolTip.Content = WindowInfo.Title+"\n"+WindowInfo.ClassName;
+
+		PinBtn.Content = WindowInfo.IsPinned ? "\uF604" : "\uF602";
+	}
+
+	private void PinBtn_Click(object sender, RoutedEventArgs e)
+	{
+		WindowInfo.IsPinned = !WindowInfo.IsPinned;
+		PinBtn.Content = WindowInfo.IsPinned ? "\uF604" : "\uF602";
+		Global.SetWindowTopMost(WindowInfo.Hwnd, WindowInfo.IsPinned);
 	}
 }

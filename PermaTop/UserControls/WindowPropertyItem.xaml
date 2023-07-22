@@ -17,12 +17,12 @@
 				<ColumnDefinition/>
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
-            <TextBlock x:Name="TitleTxt" FontWeight="ExtraBold" d:Text="WindowTItle" FontSize="14" VerticalAlignment="Center">
-                <TextBlock.ToolTip>
-                    <ToolTip x:Name="TitleToolTip" Foreground="{DynamicResource Foreground1}" Background="{DynamicResource Background1}" />
-                </TextBlock.ToolTip>
-            </TextBlock>
-			<Button x:Name="PinBtn" Width="30" Grid.Column="2" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF602;" FontSize="14"/>
+			<TextBlock x:Name="TitleTxt" FontWeight="ExtraBold" d:Text="WindowTItle" FontSize="14" VerticalAlignment="Center">
+				<TextBlock.ToolTip>
+					<ToolTip x:Name="TitleToolTip" Foreground="{DynamicResource Foreground1}" Background="{DynamicResource Background1}" />
+				</TextBlock.ToolTip>
+			</TextBlock>
+			<Button x:Name="PinBtn" Click="PinBtn_Click" Width="30" Grid.Column="2" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF602;" FontSize="14"/>
 		</Grid>
 	</Border>
 </UserControl>

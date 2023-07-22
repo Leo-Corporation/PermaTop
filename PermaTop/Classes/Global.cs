@@ -126,6 +126,18 @@ public static class Global
 		}, IntPtr.Zero);
 		return windowInfos;
 	}
+
+	public static void SetWindowTopMost(IntPtr hWnd, bool topMost)
+	{
+		if (hWnd == IntPtr.Zero)
+		{
+			Console.WriteLine("Window not found!");
+			return;
+		}
+
+		SetWindowPos(hWnd, topMost ? HWND_TOPMOST : HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+	}
+
 	public static bool IsWindowPinned(IntPtr hWnd)
 	{
 		if (hWnd == IntPtr.Zero)
