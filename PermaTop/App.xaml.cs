@@ -40,6 +40,7 @@ public partial class App : Application
 	private void Application_Startup(object sender, StartupEventArgs e)
 	{
 		Global.Favorites = XmlSerializerManager.LoadFromXml<List<Favorite>>($@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Favs.xml") ?? new();
+		Global.SettingsPage = new();
 		Global.FavoritePage = new();
 		Global.PinWindowsPage = new();
 		new MainWindow().Show();

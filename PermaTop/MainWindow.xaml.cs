@@ -79,6 +79,6 @@ public partial class MainWindow : Window
 
 	private void SettingsPageBtn_Click(object sender, RoutedEventArgs e)
 	{
-
+		PageContent.Navigate(Global.SettingsPage);
 	}	
 }
