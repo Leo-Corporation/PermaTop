@@ -169,7 +169,7 @@
 									</EventTrigger>
 								</Button.Triggers>
 							</Button>
-							<Button x:Name="FavoritePageBtn" Background="Transparent" BorderThickness="0" Style="{DynamicResource StandardButton}" HorizontalContentAlignment="Left" Click="PinPageBtn_Click" Margin="0,5,0,0">
+							<Button x:Name="FavoritePageBtn" Background="Transparent" BorderThickness="0" Style="{DynamicResource StandardButton}" HorizontalContentAlignment="Left" Click="FavoritePageBtn_Click" Margin="0,5,0,0">
 								<Grid>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition Width="Auto"/>

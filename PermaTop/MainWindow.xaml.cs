@@ -67,11 +67,16 @@ public partial class MainWindow : Window
 
 	private void PinPageBtn_Click(object sender, RoutedEventArgs e)
 	{
+		PageContent.Navigate(Global.PinWindowsPage);
+	}
 
+	private void FavoritePageBtn_Click(object sender, RoutedEventArgs e)
+	{
+		PageContent.Navigate(Global.FavoritePage);
 	}
 
 	private void SettingsPageBtn_Click(object sender, RoutedEventArgs e)
 	{
 
-	}
+	}	
 }
