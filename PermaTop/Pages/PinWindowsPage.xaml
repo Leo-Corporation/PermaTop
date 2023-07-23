@@ -5,7 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	  xmlns:local="clr-namespace:PermaTop.Pages"
 	  xmlns:lang="clr-namespace:PermaTop.Properties"
-	  mc:Ignorable="d" FontFamily="..\Fonts\#Hauora"
+	  mc:Ignorable="d" FontFamily="..\Fonts\#Hauora" Foreground="{DynamicResource Foreground1}"
 	  d:DesignHeight="450" d:DesignWidth="800" d:Background="White"
 	  Title="PinWindowsPage">
 
@@ -25,7 +25,7 @@
 			</Grid.ColumnDefinitions>
 			<TextBlock Text="&#xF602;" FontSize="16" FontFamily="../Fonts/#FluentSystemIcons-Regular" Foreground="{DynamicResource Accent}" VerticalAlignment="Center"/>
 			<TextBlock Grid.Column="1" Text="{x:Static lang:Resources.PinWindows}" FontSize="14" VerticalAlignment="Center" FontWeight="ExtraBold" Margin="5,0,0,0"/>
-			<Button x:Name="RefreshBtn" Click="RefreshBtn_Click" Grid.Column="2" Content="&#xF13E;" FontSize="16" FontFamily="../Fonts/#FluentSystemIcons-Regular" Style="{DynamicResource DefaultButton}" Background="Transparent"/>
+            <Button Foreground="{DynamicResource Foreground1}" x:Name="RefreshBtn" Click="RefreshBtn_Click" Grid.Column="2" Content="&#xF13E;" FontSize="16" FontFamily="../Fonts/#FluentSystemIcons-Regular" Style="{DynamicResource DefaultButton}" Background="Transparent"/>
 		</Grid>
 
 		<StackPanel x:Name="WindowDisplayer" Grid.Row="1">
