@@ -188,4 +188,44 @@ public static class Global
 		// UWP apps typically run under the "ApplicationFrameHost" process name
 		return process.ProcessName.Equals("ApplicationFrameHost", StringComparison.OrdinalIgnoreCase);
 	}
+
+	public static void ChangeTheme()
+	{
+		App.Current.Resources.MergedDictionaries.Clear();
+		ResourceDictionary resourceDictionary = new(); // Create a resource dictionary
+
+		bool isDark = Settings.Theme == Themes.Dark;
+		if (Settings.Theme == Themes.System)
+		{
+			isDark = IsSystemThemeDark(); // Set
+		}
+
+		if (isDark) // If the dark theme is on
+		{
+			resourceDictionary.Source = new Uri("..\\Themes\\Dark.xaml", UriKind.Relative); // Add source
+		}
+		else
+		{
+			resourceDictionary.Source = new Uri("..\\Themes\\Light.xaml", UriKind.Relative); // Add source
+		}
+
+		App.Current.Resources.MergedDictionaries.Add(resourceDictionary); // Add the dictionary
+	}
+
+	public static bool IsSystemThemeDark()
+	{
+		if (Sys.CurrentWindowsVersion != WindowsVersion.Windows10 && Sys.CurrentWindowsVersion != WindowsVersion.Windows11)
+		{
+			return false; // Avoid errors on older OSs
+		}
+
+		var t = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "SystemUsesLightTheme", "1");
+		return t switch
+		{
+			0 => true,
+			1 => false,
+			_ => false
+		}; // Return
+	}
+
 }

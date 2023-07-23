@@ -50,6 +50,27 @@ namespace PermaTop.Pages
 		public SettingsPage()
 		{
 			InitializeComponent();
+			InitUI();
+		}
+
+		private void InitUI()
+		{
+			// Select the language
+			LangComboBox.SelectedIndex = (int)Global.Settings.Language;
+
+			// Select the default theme border
+			ThemeSelectedBorder = Global.Settings.Theme switch
+			{
+				Themes.Light => LightBorder,
+				Themes.Dark => DarkBorder,
+				_ => SystemBorder
+			};
+			Border_MouseEnter(Global.Settings.Theme switch
+			{
+				Themes.Light => LightBorder,
+				Themes.Dark => DarkBorder,
+				_ => SystemBorder
+			}, null);
 		}
 
 		private void CheckUpdateBtn_Click(object sender, RoutedEventArgs e)
