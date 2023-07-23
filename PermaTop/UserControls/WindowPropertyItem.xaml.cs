@@ -59,6 +59,10 @@ public partial class WindowPropertyItem : UserControl
 		TitleToolTip.Content = WindowInfo.Title;
 
 		PinBtn.Content = WindowInfo.IsPinned ? "\uF604" : "\uF602";
+
+		Favorite item = new(WindowInfo.ClassName, WindowInfo.Title, WindowInfo.ProcessName);
+		FavBtn.Content = Global.Favorites.Contains(item) ? "\uF71B" : "\uF710";
+
 	}
 
 	private void PinBtn_Click(object sender, RoutedEventArgs e)
