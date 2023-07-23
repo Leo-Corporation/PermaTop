@@ -66,4 +66,17 @@ public partial class WindowPropertyItem : UserControl
 		PinBtn.Content = WindowInfo.IsPinned ? "\uF604" : "\uF602";
 		Global.SetWindowTopMost(WindowInfo.Hwnd, WindowInfo.IsPinned);
 	}
+
+	private void FavBtn_Click(object sender, RoutedEventArgs e)
+	{
+		Favorite item = new(WindowInfo.ClassName, WindowInfo.Title, WindowInfo.ProcessName);
+		if (Global.Favorites.Contains(item))
+		{
+			Global.Favorites.RemoveAt(Global.Favorites.IndexOf(item));
+			FavBtn.Content = "\uF710";
+			return;
+		}
+		Global.Favorites.Add(item);
+		FavBtn.Content = "\uF71B";
+	}
 }

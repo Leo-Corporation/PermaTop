@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="PeyrSharp.Env" Version="1.7.0.2307" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Fonts\FluentSystemIcons-Filled.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using PermaTop.Classes;
+using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -38,6 +39,7 @@ public partial class App : Application
 {
 	private void Application_Startup(object sender, StartupEventArgs e)
 	{
+		Global.Favorites = XmlSerializerManager.LoadFromXml<List<Favorite>>($@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Favs.xml") ?? new();
 		Global.PinWindowsPage = new();
 		new MainWindow().Show();
 	}
