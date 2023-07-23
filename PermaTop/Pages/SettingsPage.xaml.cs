@@ -72,6 +72,9 @@ namespace PermaTop.Pages
 				Themes.Dark => DarkBorder,
 				_ => SystemBorder
 			}, null);
+
+			// Checkboxes
+			UpdateOnStartChk.IsChecked = Global.Settings.CheckUpdateOnStart;
 		}
 
 		private void CheckUpdateBtn_Click(object sender, RoutedEventArgs e)
@@ -215,7 +218,6 @@ namespace PermaTop.Pages
 			}
 		}
 
-
 		private void ResetSettingsLink_Click(object sender, RoutedEventArgs e)
 		{
 			if (MessageBox.Show(Properties.Resources.ResetSettingsConfirmation, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
@@ -234,6 +236,12 @@ namespace PermaTop.Pages
 
 			Process.Start(Directory.GetCurrentDirectory() + @"\PermaTop.exe");
 			Application.Current.Shutdown();
+		}
+
+		private void UpdateOnStartChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.CheckUpdateOnStart = UpdateOnStartChk.IsChecked ?? true;
+			XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
 		}
 	}
 }
