@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using PermaTop.Pages;
+using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,8 +38,12 @@ public static class Global
 {
 	public static PinWindowsPage? PinWindowsPage { get; set; }
 	public static FavoritePage? FavoritePage { get; set; }
+	public static SettingsPage? SettingsPage { get; set; }
 
 	public static List<Favorite> Favorites { get; set; }
+	internal static string SettingsPath => $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Settings.xml";
+
+	public static Settings Settings { get; set; } = XmlSerializerManager.LoadFromXml<Settings>(SettingsPath) ?? new();
 
 	public static string GetHiSentence
 	{
