@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Microsoft.Win32;
 using PermaTop.Classes;
 using PermaTop.Enums;
 using System;
@@ -80,7 +81,10 @@ namespace PermaTop.Pages
 
 		private void SeeLicensesBtn_Click(object sender, RoutedEventArgs e)
 		{
-
+			MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
+			"Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
+			"PeyrSharp - MIT License - © 2022-2023 Léo Corporation\n" +
+			"PermaTop - MIT License - © 2023 Léo Corporation", $"{Properties.Resources.PermaTop} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		Border ThemeSelectedBorder;
@@ -165,6 +169,63 @@ namespace PermaTop.Pages
 			Global.Settings.Language = (Languages)LangComboBox.SelectedIndex;
 			XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
 			LangApplyBtn.Visibility = Visibility.Hidden; // Hide apply button
+
+			if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+			{
+				return;
+			}
+
+			Process.Start(Directory.GetCurrentDirectory() + @"\PermaTop.exe");
+			Application.Current.Shutdown();
+		}
+
+		private void ImportBtn_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog openFileDialog = new()
+			{
+				Filter = "XML|*.xml",
+				Title = Properties.Resources.Import
+			}; // Create file dialog
+
+			if (openFileDialog.ShowDialog() ?? true)
+			{
+				Global.Settings = XmlSerializerManager.LoadFromXml<Settings>(openFileDialog.FileName) ?? new() { IsFirstRun = false }; // Import
+				XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
+				MessageBox.Show(Properties.Resources.SettingsImportedMsg, Properties.Resources.PermaTop, MessageBoxButton.OK, MessageBoxImage.Information); // Show error message
+
+				// Restart app
+				Process.Start(Directory.GetCurrentDirectory() + @"\PermaTop.exe"); // Start app
+				Environment.Exit(0); // Quit
+			}
+		}
+
+		private void ExportBtn_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new()
+			{
+				FileName = "PermaTopSettings.xml",
+				Filter = "XML|*.xml",
+				Title = Properties.Resources.Export
+			}; // Create file dialog
+
+			if (saveFileDialog.ShowDialog() ?? true)
+			{
+				XmlSerializerManager.SaveToXml(Global.Settings, saveFileDialog.FileName); // Export games
+				MessageBox.Show(Properties.Resources.SettingsExportedSucessMsg, Properties.Resources.PermaTop, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
+			}
+		}
+
+
+		private void ResetSettingsLink_Click(object sender, RoutedEventArgs e)
+		{
+			if (MessageBox.Show(Properties.Resources.ResetSettingsConfirmation, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+			{
+				return;
+			}
+
+			Global.Settings = new() { IsFirstRun = false };
+			XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
+
 
 			if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
 			{
