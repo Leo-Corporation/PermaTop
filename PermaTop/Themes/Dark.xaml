@@ -10,6 +10,8 @@
 	<SolidColorBrush x:Key="WindowButtonsHoverForeground1" Color="#FFFFFF"/>
 	<SolidColorBrush x:Key="Accent" Color="#e4572e"/>
 	<SolidColorBrush x:Key="LightAccent" Color="#361207"/>
-    <SolidColorBrush x:Key="Gray" Color="#5A5A6E"/>
+	<SolidColorBrush x:Key="Gray" Color="#5A5A6E"/>
+	<SolidColorBrush x:Key="DarkGray" Color="#7474B1"/>
 
+	<Color x:Key="LightAccentColor" R="54" G="18" B="7"/>
 </ResourceDictionary>
