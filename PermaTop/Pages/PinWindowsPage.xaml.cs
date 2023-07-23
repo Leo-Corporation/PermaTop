@@ -50,7 +50,7 @@ public partial class PinWindowsPage : Page
 		InitUI();
 	}
 
-	private void InitUI()
+	internal void InitUI()
 	{
 		WindowDisplayer.Children.Clear();
 		var openedWindows = Global.GetWindows();
