@@ -21,7 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Microsoft.Win32;
+using PermaTop.Enums;
 using PermaTop.Pages;
+using PeyrSharp.Enums;
 using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
@@ -29,6 +32,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -228,4 +232,21 @@ public static class Global
 		}; // Return
 	}
 
+	public static void ChangeLanguage()
+	{
+		switch (Settings.Language) // For each case
+		{
+			case Languages.Default: // No language
+				break;
+			case Languages.en_US: // English (US)
+				Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US"); // Change
+				break;
+
+			case Languages.fr_FR: // French (FR)
+				Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR"); // Change
+				break;
+			default: // No language
+				break;
+		}
+	}
 }

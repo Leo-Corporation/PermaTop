@@ -39,6 +39,7 @@ public partial class App : Application
 {
 	private void Application_Startup(object sender, StartupEventArgs e)
 	{
+		Global.ChangeLanguage();
 		Global.ChangeTheme();
 
 		Global.Favorites = XmlSerializerManager.LoadFromXml<List<Favorite>>($@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Favs.xml") ?? new();
