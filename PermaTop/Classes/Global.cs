@@ -37,6 +37,8 @@ public static class Global
 {
 	public static PinWindowsPage? PinWindowsPage { get; set; }
 
+	public static List<Favorite> Favorites { get; set; }
+
 	public static string GetHiSentence
 	{
 		get
@@ -123,9 +125,18 @@ public static class Global
 				GetClassName(hWnd, classBuilder, classBuilder.Capacity);
 				string className = classBuilder.ToString();
 
+				string? file = null;
+				try
+				{
+					GetWindowThreadProcessId(hWnd, out uint processId);
+					Process process = Process.GetProcessById((int)processId);
+					file = process.MainModule.FileName;
+				}
+				catch {	}
+
 				if (!string.IsNullOrEmpty(windowTitle))
 				{
-					windowInfos.Add(new(windowTitle, className, IsWindowPinned(hWnd), hWnd));
+					windowInfos.Add(new(windowTitle, className, IsWindowPinned(hWnd), hWnd, file));
 				}
 			}
 

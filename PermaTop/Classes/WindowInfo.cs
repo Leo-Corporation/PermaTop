@@ -28,14 +28,16 @@ public class WindowInfo
 {
 	public string Title { get; set; }
 	public string ClassName { get; set; }
+	public string? ProcessName { get; set; }
 	public bool IsPinned { get; set; }
 	public IntPtr Hwnd { get; set; }
 
-	public WindowInfo(string title, string className, bool pinned, IntPtr hWnd)
+	public WindowInfo(string title, string className, bool pinned, IntPtr hWnd, string processName)
 	{
 		Title = title;
 		ClassName = className;
 		IsPinned = pinned;
 		Hwnd = hWnd;
+		ProcessName = processName;
 	}
 }
