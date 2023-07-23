@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>PermaTop.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,12 @@
     <None Remove="Images\Light.png" />
     <None Remove="Images\LightTheme.png" />
     <None Remove="Images\SystemTheme.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="PermaTop.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
