@@ -133,4 +133,106 @@
   <data name="Favorites" xml:space="preserve">
     <value>Favorites</value>
   </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>PermaTop is up to date.</value>
+  </data>
+	<data name="Updates" xml:space="preserve">
+	<value>Updates</value>
+  </data>
+	<data name="Install" xml:space="preserve">
+	<value>Install</value>
+  </data>
+	<data name="Theme" xml:space="preserve">
+	<value>Theme</value>
+  </data>
+	<data name="Light" xml:space="preserve">
+	<value>Light</value>
+  </data>
+	<data name="Dark" xml:space="preserve">
+	<value>Dark</value>
+  </data>
+	<data name="Licenses" xml:space="preserve">
+	<value>Licenses</value>
+  </data>
+	<data name="Apply" xml:space="preserve">
+	<value>Apply</value>
+  </data>
+	<data name="SeeLicenses" xml:space="preserve">
+	<value>See licenses</value>
+  </data>
+	<data name="ChangeTheme" xml:space="preserve">
+	<value>Change ColorPicker theme.</value>
+  </data>
+	<data name="Language" xml:space="preserve">
+	<value>Language</value>
+  </data>
+	<data name="NeedRestartToApplyChanges" xml:space="preserve">
+	<value>ColorPicker needs to restart to apply the changes. Do you want to restart now?</value>
+  </data>
+	<data name="Default" xml:space="preserve">
+	<value>Default</value>
+  </data>
+	<data name="AvailableUpdates" xml:space="preserve">
+	<value>Updates are available.</value>
+  </data>
+	<data name="InstallConfirmMsg" xml:space="preserve">
+	<value>To install updates, ColorPicker needs to restarts. Do you want to continue?</value>
+  </data>
+	<data name="InstallVersion" xml:space="preserve">
+	<value>Install version</value>
+  </data>
+	<data name="Version" xml:space="preserve">
+	<value>Version</value>
+  </data>
+	<data name="ChangeLanguage" xml:space="preserve">
+	<value>Change the language of ColorPicker.</value>
+  </data>
+	<data name="NotifyUpdates" xml:space="preserve">
+	<value>Show a notification when updates are available</value>
+  </data>
+	<data name="Notifications" xml:space="preserve">
+	<value>Notifications</value>
+  </data>
+	<data name="NotificationsDescription" xml:space="preserve">
+	<value>Notifications settings.</value>
+  </data>
+	<data name="CheckUpdatesOnStart" xml:space="preserve">
+	<value>Check for updates on start</value>
+  </data>
+	<data name="StartupPage" xml:space="preserve">
+	<value>Default page on start</value>
+  </data>
+	<data name="OnStart" xml:space="preserve">
+	<value>On start</value>
+  </data>
+	<data name="OnStartDescription" xml:space="preserve">
+	<value>Settings that applies on start.</value>
+  </data>
+	<data name="DataPrivacy" xml:space="preserve">
+	<value>Data and Privacy</value>
+  </data>
+	<data name="DataDescription" xml:space="preserve">
+	<value>Manage your data and your privacy.</value>
+  </data>
+	<data name="Import" xml:space="preserve">
+	<value>Import settings</value>
+  </data>
+	<data name="Export" xml:space="preserve">
+	<value>Export settings</value>
+  </data>
+	<data name="SettingsExportedSucessMsg" xml:space="preserve">
+	<value>Settings have been sucessfully exported.</value>
+  </data>
+	<data name="SettingsImportedMsg" xml:space="preserve">
+	<value>Settings were sucessfully imported. To finish the process, ColorPicker is going to restart.</value>
+  </data>
+	<data name="ResetSettings" xml:space="preserve">
+	<value>Reset settings</value>
+  </data>
+	<data name="ResetSettingsConfirmation" xml:space="preserve">
+	<value>Are you sure you want to reset all settings?</value>
+  </data>
 </root>
