@@ -1,0 +1,34 @@
+﻿<Page x:Class="PermaTop.Pages.FavoritePage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  xmlns:local="clr-namespace:PermaTop.Pages"
+	  xmlns:lang="clr-namespace:PermaTop.Properties"
+	  mc:Ignorable="d" FontFamily="..\Fonts\#Hauora"
+	  d:DesignHeight="450" d:DesignWidth="800" d:Background="White"
+	  Title="FavoritePage">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+
+		<Grid Margin="10" Grid.ColumnSpan="3">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="&#xF710;" FontSize="16" FontFamily="../Fonts/#FluentSystemIcons-Regular" Foreground="{DynamicResource Accent}" VerticalAlignment="Center"/>
+			<TextBlock Grid.Column="1" Text="{x:Static lang:Resources.Favorites}" FontSize="14" VerticalAlignment="Center" FontWeight="ExtraBold" Margin="5,0,0,0"/>
+		</Grid>
+
+		<StackPanel x:Name="WindowDisplayer" Grid.Row="1">
+			<!--Items appended in code-->
+		</StackPanel>
+	</Grid>
+</Page>

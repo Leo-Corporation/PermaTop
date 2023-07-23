@@ -36,6 +36,7 @@ namespace PermaTop.Classes;
 public static class Global
 {
 	public static PinWindowsPage? PinWindowsPage { get; set; }
+	public static FavoritePage? FavoritePage { get; set; }
 
 	public static List<Favorite> Favorites { get; set; }
 
@@ -86,7 +87,7 @@ public static class Global
 
 	// Import the FindWindow function from user32.dll
 	[DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-	static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+	internal static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
 	// Import the GetClassName function from user32.dll
 	[DllImport("user32.dll", CharSet = CharSet.Unicode)]
@@ -108,7 +109,7 @@ public static class Global
 	private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
 	[DllImport("user32.dll")]
-	private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+	internal static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
 	public static List<WindowInfo> GetWindows()
 	{
