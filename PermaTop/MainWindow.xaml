@@ -178,8 +178,8 @@
 									<Border Width="32" Height="32" Padding="7" CornerRadius="5">
 										<Border.Background>
 											<LinearGradientBrush>
-												<GradientStop Color="#FFFFBB00" Offset="0"/>
-												<GradientStop Color="#FF6ADA20" Offset="1"/>
+												<GradientStop Color="#FFFF0080" Offset="0"/>
+												<GradientStop Color="#FF20C5DA" Offset="1"/>
 											</LinearGradientBrush>
 										</Border.Background>
 										<TextBlock x:Name="FavoriteIconTxt" Text="&#xF719;" FontSize="18" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontFamily="/Fonts/#FluentSystemIcons-Filled" HorizontalAlignment="Center" VerticalAlignment="Center"/>
