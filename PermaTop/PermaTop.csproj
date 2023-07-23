@@ -12,7 +12,9 @@
     <None Remove="Fonts\FluentSystemIcons-Regular.ttf" />
     <None Remove="Fonts\Hauora-ExtraBold.ttf" />
     <None Remove="Fonts\Hauora-Regular.ttf" />
+    <None Remove="Images\Dark.png" />
     <None Remove="Images\DarkTheme.png" />
+    <None Remove="Images\Light.png" />
     <None Remove="Images\LightTheme.png" />
     <None Remove="Images\SystemTheme.png" />
   </ItemGroup>
@@ -34,7 +36,13 @@
     <Resource Include="Fonts\Hauora-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\Dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\DarkTheme.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Light.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\LightTheme.png">

@@ -76,7 +76,7 @@
 		<DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="10" Opacity="0.4" RenderingBias="Quality" />
 	</Window.Effect>
 
-	<Border Name="WindowBorder" Margin="10" BorderThickness="0" Background="{DynamicResource Background1}" CornerRadius="5">
+	<Border Name="WindowBorder" Margin="10" BorderThickness="0" Background="{DynamicResource BackgroundImg}" CornerRadius="5">
 		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
