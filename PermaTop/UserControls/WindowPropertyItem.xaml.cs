@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using PermaTop.Classes;
+using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,9 +75,12 @@ public partial class WindowPropertyItem : UserControl
 		{
 			Global.Favorites.RemoveAt(Global.Favorites.IndexOf(item));
 			FavBtn.Content = "\uF710";
-			return;
 		}
-		Global.Favorites.Add(item);
-		FavBtn.Content = "\uF71B";
+		else
+		{
+			Global.Favorites.Add(item);
+			FavBtn.Content = "\uF71B";
+		}
+		XmlSerializerManager.SaveToXml(Global.Favorites, $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Favs.xml");
 	}
 }

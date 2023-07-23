@@ -57,6 +57,7 @@ public static class XmlSerializerManager
 			}
 			else
 			{
+				Directory.CreateDirectory(Path.GetDirectoryName(path));
 				// Create a new instance of type T
 				T obj = new();
 

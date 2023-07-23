@@ -23,4 +23,7 @@ SOFTWARE.
 */
 
 namespace PermaTop.Classes;
-public record Favorite(string ClassName, string WindowTitle, string? ProcessFileName);
+public record Favorite(string ClassName, string WindowTitle, string? ProcessFileName)
+{
+	public Favorite() : this("", "", null) { }
+}
