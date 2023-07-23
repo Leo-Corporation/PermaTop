@@ -47,15 +47,15 @@ public partial class FavoriteItem : UserControl
 {
 	Favorite Favorite { get; set; }
 	StackPanel ParentPanel { get; set; }
-	public FavoriteItem(Favorite favorite, StackPanel stackPanel)
+	public FavoriteItem(Favorite favorite, StackPanel stackPanel, bool noPin)
 	{
 		InitializeComponent();
 		Favorite = favorite;
 		ParentPanel = stackPanel;
-		InitUI();
+		InitUI(noPin);
 	}
 
-	private void InitUI()
+	private void InitUI(bool noPin)
 	{
 		TitleTxt.Text = Favorite.WindowTitle.Length > 50 ? Favorite.WindowTitle[0..50] + "..." : Favorite.WindowTitle;
 		TitleToolTip.Content = Favorite.WindowTitle;
@@ -72,7 +72,7 @@ public partial class FavoriteItem : UserControl
 
 		if (file != null && file == Favorite.ProcessFileName)
 		{
-			Global.SetWindowTopMost(hWnd, true);
+			if (!noPin)	Global.SetWindowTopMost(hWnd, true);
 			StatusTxt.Text = "\uF299";
 			return;
 		}

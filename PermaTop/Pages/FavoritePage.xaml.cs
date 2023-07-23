@@ -50,11 +50,12 @@ public partial class FavoritePage : Page
 		InitUI();
 	}
 
-	internal void InitUI()
+	internal void InitUI(bool noPin = false)
 	{
+		WindowDisplayer.Children.Clear();
 		for (int i = 0; i < Global.Favorites.Count; i++)
 		{
-			WindowDisplayer.Children.Add(new FavoriteItem(Global.Favorites[i], WindowDisplayer));
+			WindowDisplayer.Children.Add(new FavoriteItem(Global.Favorites[i], WindowDisplayer, noPin));
 		}
 	}
 }

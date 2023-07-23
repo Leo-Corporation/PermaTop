@@ -73,7 +73,7 @@ public partial class MainWindow : Window
 
 	private void FavoritePageBtn_Click(object sender, RoutedEventArgs e)
 	{
-		Global.FavoritePage?.InitUI();
+		Global.FavoritePage?.InitUI(true);
 		PageContent.Navigate(Global.FavoritePage);
 	}
 
