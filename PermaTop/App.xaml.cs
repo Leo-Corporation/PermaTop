@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using PermaTop.Classes;
+using PermaTop.Windows;
 using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,14 @@ public partial class App : Application
 		Global.SettingsPage = new();
 		Global.FavoritePage = new();
 		Global.PinWindowsPage = new();
-		new MainWindow().Show();
+
+		if (!Global.Settings.IsFirstRun)
+		{
+			new MainWindow().Show();
+		}
+		else
+		{
+			new FirstRunWindow().Show();
+		}
 	}
 }
