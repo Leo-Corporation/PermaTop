@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermaTop", "PermaTop\PermaTop.csproj", "{17A20D13-C737-432E-9E20-DAF75CF7ABC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermaTop", "PermaTop\PermaTop.csproj", "{17A20D13-C737-432E-9E20-DAF75CF7ABC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xalyus Updater", "Xalyus Updater\Xalyus Updater.csproj", "{40B47143-6F4C-4DCB-85BB-663F93997B5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{17A20D13-C737-432E-9E20-DAF75CF7ABC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17A20D13-C737-432E-9E20-DAF75CF7ABC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17A20D13-C737-432E-9E20-DAF75CF7ABC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40B47143-6F4C-4DCB-85BB-663F93997B5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40B47143-6F4C-4DCB-85BB-663F93997B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40B47143-6F4C-4DCB-85BB-663F93997B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40B47143-6F4C-4DCB-85BB-663F93997B5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
