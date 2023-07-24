@@ -24,6 +24,8 @@ SOFTWARE.
 using Microsoft.Win32;
 using PermaTop.Classes;
 using PermaTop.Enums;
+using PeyrSharp.Core;
+using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -50,15 +52,18 @@ namespace PermaTop.Pages
 	{
 		public delegate void ThemeChangedEvent(object sender, EventArgs e);
 		public event ThemeChangedEvent ThemeChanged;
-
+		readonly System.Windows.Forms.NotifyIcon notifyIcon = new();
 		public SettingsPage()
 		{
 			InitializeComponent();
 			InitUI();
 		}
 
-		private void InitUI()
+		private async void InitUI()
 		{
+			// About section
+			VersionTxt.Text = Global.Version; // Update the current version label
+
 			// Select the language
 			LangComboBox.SelectedIndex = (int)Global.Settings.Language;
 
@@ -78,6 +83,25 @@ namespace PermaTop.Pages
 
 			// Checkboxes
 			UpdateOnStartChk.IsChecked = Global.Settings.CheckUpdateOnStart;
+
+			if (!Global.Settings.CheckUpdateOnStart) return;
+			try
+			{
+				if (!await Internet.IsAvailableAsync()) return;
+				if (!Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink))) return;
+			}
+			catch { return; }
+
+			// If updates are available
+			// Update the UI
+			CheckUpdateBtn.Content = Properties.Resources.Install;
+			UpdateTxt.Text = Properties.Resources.AvailableUpdates;
+
+			// Show notification
+			notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(AppDomain.CurrentDomain.BaseDirectory + @"\PermaTop.exe");
+			notifyIcon.Visible = true; // Show
+			notifyIcon.ShowBalloonTip(5000, Properties.Resources.PermaTop, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
+			notifyIcon.Visible = false; // Hide
 		}
 
 		private void CheckUpdateBtn_Click(object sender, RoutedEventArgs e)
