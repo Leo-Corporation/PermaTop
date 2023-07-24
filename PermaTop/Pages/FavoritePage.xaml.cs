@@ -57,5 +57,7 @@ public partial class FavoritePage : Page
 		{
 			WindowDisplayer.Children.Add(new FavoriteItem(Global.Favorites[i], WindowDisplayer, noPin));
 		}
+		FavPlaceholder.Visibility = WindowDisplayer.Children.Count > 0 ? Visibility.Collapsed : Visibility.Visible;
+		WindowDisplayer.Visibility = WindowDisplayer.Children.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
 	}
 }

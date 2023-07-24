@@ -61,6 +61,15 @@ namespace PermaTop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add windows to your favorites and automatically pin them when you launch the app..
+        /// </summary>
+        public static string AddFavoriteMsg {
+            get {
+                return ResourceManager.GetString("AddFavoriteMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string Apply {
@@ -300,6 +309,15 @@ namespace PermaTop.Properties {
         public static string NeedRestartToApplyChanges {
             get {
                 return ResourceManager.GetString("NeedRestartToApplyChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nothing to see here.
+        /// </summary>
+        public static string NothingToSee {
+            get {
+                return ResourceManager.GetString("NothingToSee", resourceCulture);
             }
         }
         

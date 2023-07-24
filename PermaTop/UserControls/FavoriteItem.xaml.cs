@@ -85,5 +85,6 @@ public partial class FavoriteItem : UserControl
 		Global.Favorites.Remove(Favorite);
 		XmlSerializerManager.SaveToXml(Global.Favorites, $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Favs.xml");
 		ParentPanel.Children.Remove(this);
+		if (ParentPanel.Children.Count < 1) Global.FavoritePage?.InitUI();
 	}
 }

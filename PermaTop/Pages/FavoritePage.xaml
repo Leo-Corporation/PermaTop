@@ -27,8 +27,13 @@
 			<TextBlock Grid.Column="1" Text="{x:Static lang:Resources.Favorites}" FontSize="14" VerticalAlignment="Center" FontWeight="ExtraBold" Margin="5,0,0,0"/>
 		</Grid>
 
-		<StackPanel x:Name="WindowDisplayer" Grid.Row="1">
+		<StackPanel x:Name="WindowDisplayer" Grid.Row="1" Visibility="Collapsed">
 			<!--Items appended in code-->
+		</StackPanel>
+		<StackPanel x:Name="FavPlaceholder" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<TextBlock Text="&#xF714;" FontSize="48" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+			<TextBlock Text="{x:Static lang:Resources.NothingToSee}" FontWeight="ExtraBold" HorizontalAlignment="Center"/>
+			<TextBlock Text="{x:Static lang:Resources.AddFavoriteMsg}" HorizontalAlignment="Center"/>
 		</StackPanel>
 	</Grid>
 </Page>
