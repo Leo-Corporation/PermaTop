@@ -178,13 +178,13 @@
 	<value>See licenses</value>
   </data>
   <data name="ChangeTheme" xml:space="preserve">
-	<value>Change ColorPicker theme.</value>
+	<value>Change PermaTop theme.</value>
   </data>
   <data name="Language" xml:space="preserve">
 	<value>Language</value>
   </data>
   <data name="NeedRestartToApplyChanges" xml:space="preserve">
-	<value>ColorPicker needs to restart to apply the changes. Do you want to restart now?</value>
+	<value>PermaTop needs to restart to apply the changes. Do you want to restart now?</value>
   </data>
   <data name="Default" xml:space="preserve">
 	<value>Default</value>
@@ -199,7 +199,7 @@
 	<value>Updates are available.</value>
   </data>
   <data name="InstallConfirmMsg" xml:space="preserve">
-	<value>To install updates, ColorPicker needs to restarts. Do you want to continue?</value>
+	<value>To install updates, PermaTop needs to restarts. Do you want to continue?</value>
   </data>
   <data name="InstallVersion" xml:space="preserve">
 	<value>Install version</value>
@@ -208,7 +208,7 @@
 	<value>Version</value>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
-	<value>Change the language of ColorPicker.</value>
+	<value>Change the language of PermaTop.</value>
   </data>
   <data name="NotifyUpdates" xml:space="preserve">
 	<value>Show a notification when updates are available</value>
@@ -247,7 +247,7 @@
 	<value>Settings have been sucessfully exported.</value>
   </data>
   <data name="SettingsImportedMsg" xml:space="preserve">
-	<value>Settings were sucessfully imported. To finish the process, ColorPicker is going to restart.</value>
+	<value>Settings were sucessfully imported. To finish the process, PermaTop is going to restart.</value>
   </data>
   <data name="ResetSettings" xml:space="preserve">
 	<value>Reset settings</value>
