@@ -261,4 +261,22 @@
   <data name="AddFavoriteMsg" xml:space="preserve">
     <value>Add windows to your favorites and automatically pin them when you launch the app.</value>
   </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome to PermaTop</value>
+  </data>
+  <data name="Motto" xml:space="preserve">
+    <value>Keep your windows in sight and in control.</value>
+  </data>
+  <data name="PinFeature" xml:space="preserve">
+    <value>Easily pin any window to the top of your screen.</value>
+  </data>
+  <data name="FavFeature" xml:space="preserve">
+    <value>Save your favorite windows and have them automatically pinned whenever you launch PermaTop.</value>
+  </data>
+  <data name="CustomizationFeature" xml:space="preserve">
+    <value>Customize the appearance and behavior of PermaTop to suit your preferences and workflow.</value>
+  </data>
+  <data name="Launch" xml:space="preserve">
+    <value>Launch</value>
+  </data>
 </root>

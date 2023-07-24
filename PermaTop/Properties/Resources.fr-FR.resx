@@ -261,4 +261,22 @@
   <data name="AddFavoriteMsg" xml:space="preserve">
     <value>Ajoutez des fenêtres à vos favoris et épinglez-les automatiquement lorsque vous lancez l'application.</value>
   </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenue sur Permatop</value>
+  </data>
+  <data name="Motto" xml:space="preserve">
+    <value>Gardez vos fenêtres en vue et sous contrôle.</value>
+  </data>
+  <data name="PinFeature" xml:space="preserve">
+    <value>Épinglez facilement n'importe quelle fenêtre en haut de votre écran.</value>
+  </data>
+  <data name="FavFeature" xml:space="preserve">
+    <value>Enregistrez vos fenêtres préférées et épinglez-les automatiquement chaque fois que vous lancez PermaTop.</value>
+  </data>
+  <data name="CustomizationFeature" xml:space="preserve">
+    <value>Personnalisez l'apparence et le comportement de PermaTop en fonction de vos préférences et de votre flux de travail.</value>
+  </data>
+  <data name="Launch" xml:space="preserve">
+    <value>Lancer</value>
+  </data>
 </root>
