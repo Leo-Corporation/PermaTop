@@ -32,7 +32,7 @@ public class Settings
 	public bool IsFirstRun { get; set; }
 	public bool CheckUpdateOnStart { get; set; }
 	public Settings()
-    {
+	{
 		Theme = Themes.System;
 		Language = Languages.Default;
 		IsFirstRun = true;

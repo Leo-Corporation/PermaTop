@@ -29,11 +29,9 @@ using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -144,7 +142,7 @@ public static class Global
 					Process process = Process.GetProcessById((int)processId);
 					file = process.MainModule.FileName;
 				}
-				catch {	}
+				catch { }
 
 				if (!string.IsNullOrEmpty(windowTitle))
 				{

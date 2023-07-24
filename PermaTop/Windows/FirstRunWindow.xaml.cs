@@ -23,32 +23,20 @@ SOFTWARE.
 */
 using PermaTop.Classes;
 using PermaTop.Enums;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PermaTop.Windows
 {
-    /// <summary>
-    /// Interaction logic for FirstRunWindow.xaml
-    /// </summary>
-    public partial class FirstRunWindow : Window
-    {
-        public FirstRunWindow()
-        {
-            InitializeComponent();
+	/// <summary>
+	/// Interaction logic for FirstRunWindow.xaml
+	/// </summary>
+	public partial class FirstRunWindow : Window
+	{
+		public FirstRunWindow()
+		{
+			InitializeComponent();
 			LangComboBox.SelectedIndex = (int)Global.Settings.Language;
 		}
 
