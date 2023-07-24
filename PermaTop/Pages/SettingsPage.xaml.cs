@@ -104,9 +104,28 @@ namespace PermaTop.Pages
 			notifyIcon.Visible = false; // Hide
 		}
 
-		private void CheckUpdateBtn_Click(object sender, RoutedEventArgs e)
+		private async void CheckUpdateBtn_Click(object sender, RoutedEventArgs e)
 		{
+			string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink);
+			if (Update.IsAvailable(Global.Version, lastVersion))
+			{
+				UpdateTxt.Text = Properties.Resources.AvailableUpdates;
 
+				if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.No)
+				{
+					return;
+				}
+
+				// If the user wants to proceed.
+				XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
+
+				Sys.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+				Application.Current.Shutdown(); // Close
+			}
+			else
+			{
+				UpdateTxt.Text = Properties.Resources.UpToDate;
+			}
 		}
 
 		private void SeeLicensesBtn_Click(object sender, RoutedEventArgs e)
