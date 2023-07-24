@@ -53,6 +53,20 @@ public partial class MainWindow : Window
 	{
 		HelloTxt.Text = Global.GetHiSentence;
 		PageContent.Navigate(Global.PinWindowsPage);
+		CheckButton(PinPageBtn);
+	}
+
+	private void CheckButton(Button btn)
+	{
+		btn.Background = Global.GetSolidColor("Background1");
+	}
+
+	private void UnCheckAllButton()
+	{
+		// Background
+		PinPageBtn.Background = new SolidColorBrush(Colors.Transparent);
+		FavoritePageBtn.Background = new SolidColorBrush(Colors.Transparent);
+		SettingsPageBtn.Background = new SolidColorBrush(Colors.Transparent);
 	}
 
 	private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
@@ -69,16 +83,25 @@ public partial class MainWindow : Window
 	{
 		Global.PinWindowsPage?.InitUI();
 		PageContent.Navigate(Global.PinWindowsPage);
+
+		UnCheckAllButton();
+		CheckButton(PinPageBtn);
 	}
 
 	private void FavoritePageBtn_Click(object sender, RoutedEventArgs e)
 	{
 		Global.FavoritePage?.InitUI(true);
 		PageContent.Navigate(Global.FavoritePage);
+
+		UnCheckAllButton();
+		CheckButton(FavoritePageBtn);
 	}
 
 	private void SettingsPageBtn_Click(object sender, RoutedEventArgs e)
 	{
 		PageContent.Navigate(Global.SettingsPage);
-	}	
+
+		UnCheckAllButton();
+		CheckButton(SettingsPageBtn);
+	}
 }
