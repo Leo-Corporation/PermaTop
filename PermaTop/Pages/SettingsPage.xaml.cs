@@ -48,6 +48,9 @@ namespace PermaTop.Pages
 	/// </summary>
 	public partial class SettingsPage : Page
 	{
+		public delegate void ThemeChangedEvent(object sender, EventArgs e);
+		public event ThemeChangedEvent ThemeChanged;
+
 		public SettingsPage()
 		{
 			InitializeComponent();
@@ -117,14 +120,8 @@ namespace PermaTop.Pages
 			Global.Settings.Theme = Themes.Light;
 			XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
 
-			if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-			{
-				return;
-			}
-
-
-			Process.Start(Directory.GetCurrentDirectory() + @"\PermaTop.exe");
-			Application.Current.Shutdown();
+			Global.ChangeTheme();
+			ThemeChanged?.Invoke(this, new());
 		}
 
 		private void DarkBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -135,14 +132,8 @@ namespace PermaTop.Pages
 			Global.Settings.Theme = Themes.Dark;
 			XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
 
-			if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-			{
-				return;
-			}
-
-
-			Process.Start(Directory.GetCurrentDirectory() + @"\PermaTop.exe");
-			Application.Current.Shutdown();
+			Global.ChangeTheme();
+			ThemeChanged?.Invoke(this, new());
 		}
 
 		private void SystemBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -153,13 +144,8 @@ namespace PermaTop.Pages
 			Global.Settings.Theme = Themes.System;
 			XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
 
-			if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-			{
-				return;
-			}
-
-			Process.Start(Directory.GetCurrentDirectory() + @"\PermaTop.exe");
-			Application.Current.Shutdown();
+			Global.ChangeTheme();
+			ThemeChanged?.Invoke(this, new());
 		}
 
 		private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

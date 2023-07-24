@@ -151,9 +151,9 @@
 												<GradientStop Color="#e4572e" Offset="1"/>
 											</LinearGradientBrush>
 										</Border.Background>
-										<TextBlock x:Name="HomeIconTxt" Text="&#xF60C;" FontSize="18" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontFamily="/Fonts/#FluentSystemIcons-Filled" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+										<TextBlock x:Name="HomeIconTxt" Text="&#xF60C;" FontSize="18" Foreground="{DynamicResource WindowButtonsHoverForeground1}" FontFamily="/Fonts/#FluentSystemIcons-Filled" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 									</Border>
-									<TextBlock Text="{x:Static lang:Resources.Pin}" FontSize="14" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+									<TextBlock Text="{x:Static lang:Resources.Pin}" FontSize="14" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="{DynamicResource Foreground1}"/>
 								</Grid>
 
 								<Button.Triggers>
@@ -182,9 +182,9 @@
 												<GradientStop Color="#FF20C5DA" Offset="1"/>
 											</LinearGradientBrush>
 										</Border.Background>
-										<TextBlock x:Name="FavoriteIconTxt" Text="&#xF719;" FontSize="18" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontFamily="/Fonts/#FluentSystemIcons-Filled" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+										<TextBlock x:Name="FavoriteIconTxt" Text="&#xF719;" FontSize="18" Foreground="{DynamicResource WindowButtonsHoverForeground1}" FontFamily="/Fonts/#FluentSystemIcons-Filled" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 									</Border>
-									<TextBlock Text="{x:Static lang:Resources.Favorites}" FontSize="14" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+									<TextBlock Text="{x:Static lang:Resources.Favorites}" FontSize="14" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="{DynamicResource Foreground1}"/>
 								</Grid>
 
 								<Button.Triggers>
@@ -211,7 +211,7 @@
 												<GradientStop Color="#343C51" Offset="1"/>
 											</LinearGradientBrush>
 										</Border.Background>
-										<TextBlock x:Name="SettingsIconTxt" Text="&#xF6B3;" FontSize="18" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontFamily="/Fonts/#FluentSystemIcons-Filled" RenderTransformOrigin="0.5,0.5">
+										<TextBlock x:Name="SettingsIconTxt" Text="&#xF6B3;" FontSize="18" Foreground="{DynamicResource WindowButtonsHoverForeground1}" FontFamily="/Fonts/#FluentSystemIcons-Filled" RenderTransformOrigin="0.5,0.5">
 											<TextBlock.RenderTransform>
 												<TransformGroup>
 													<RotateTransform x:Name="SettingsRotator" Angle="0"/>
@@ -219,7 +219,7 @@
 											</TextBlock.RenderTransform>
 										</TextBlock>
 									</Border>
-									<TextBlock Text="{x:Static lang:Resources.Settings}" FontSize="14" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+									<TextBlock Text="{x:Static lang:Resources.Settings}" FontSize="14" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="{DynamicResource Foreground1}"/>
 								</Grid>
 
 								<Button.Triggers>

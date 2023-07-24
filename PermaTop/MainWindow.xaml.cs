@@ -54,6 +54,10 @@ public partial class MainWindow : Window
 		HelloTxt.Text = Global.GetHiSentence;
 		PageContent.Navigate(Global.PinWindowsPage);
 		CheckButton(PinPageBtn);
+		Global.SettingsPage.ThemeChanged += (o, e) =>
+		{
+			CheckButton(SettingsPageBtn);
+		};
 	}
 
 	private void CheckButton(Button btn)
