@@ -85,7 +85,7 @@ public partial class WindowPropertyItem : UserControl
 	private const int SC_CLOSE = 0xF060;
 	private const int SC_MAXIMIZE = 0xF030;
 	private const int SC_RESTORE = 0xF120;
-
+	private const int SC_MINIMIZE = 0xF020;
 
 	[DllImport("user32.dll")]
 	private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
@@ -101,15 +101,28 @@ public partial class WindowPropertyItem : UserControl
 
 	private void MaxRestoreBtn_Click(object sender, RoutedEventArgs e)
 	{
-		if (!Global.IsWindowMaximized(WindowInfo.Hwnd))
+		try
 		{
-			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
-			MaxRestoreBtn.Content = "\uF670";
-			MaxRestoreBtn.FontSize = 18;
-			return;
+			if (!Global.IsWindowMaximized(WindowInfo.Hwnd))
+			{
+				SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
+				MaxRestoreBtn.Content = "\uF670";
+				MaxRestoreBtn.FontSize = 18;
+				return;
+			}
+			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_RESTORE, IntPtr.Zero);
+			MaxRestoreBtn.Content = "\uFA41";
+			MaxRestoreBtn.FontSize = 14;
 		}
-		SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_RESTORE, IntPtr.Zero);
-		MaxRestoreBtn.Content = "\uFA41";
-		MaxRestoreBtn.FontSize = 14;
+		catch {	}
+	}
+
+	private void MinBtn_Click(object sender, RoutedEventArgs e)
+	{
+		try
+		{
+			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MINIMIZE, IntPtr.Zero);
+		}
+		catch {	}
 	}
 }
