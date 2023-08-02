@@ -18,6 +18,7 @@
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 			<TextBlock x:Name="TitleTxt" FontWeight="ExtraBold" d:Text="WindowTItle" FontSize="14" VerticalAlignment="Center">
 				<TextBlock.ToolTip>
@@ -26,7 +27,8 @@
 			</TextBlock>
             <Button Foreground="{DynamicResource Foreground1}" x:Name="FavBtn" Click="FavBtn_Click" Width="30" Grid.Column="2" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF710;" FontSize="14" Margin="0 0 5 0"/>
             <Button Foreground="{DynamicResource Foreground1}" x:Name="PinBtn" Click="PinBtn_Click" Width="30" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF602;" FontSize="14" Margin="0 0 5 0"/>
-            <Button Foreground="{DynamicResource Foreground1}" x:Name="CloseBtn" Click="CloseBtn_Click" Width="30" Grid.Column="4" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF36A;" FontSize="14"/>
+            <Button Foreground="{DynamicResource Foreground1}" x:Name="MaxRestoreBtn" Click="MaxRestoreBtn_Click" Width="30" Grid.Column="4" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xFA41;" FontSize="14" Margin="0 0 5 0"/>
+            <Button Foreground="{DynamicResource Foreground1}" x:Name="CloseBtn" Click="CloseBtn_Click" Width="30" Grid.Column="5" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF36A;" FontSize="14"/>
 		</Grid>
 	</Border>
 </UserControl>

@@ -82,6 +82,8 @@ public partial class WindowPropertyItem : UserControl
 
 	private const int WM_SYSCOMMAND = 0x0112;
 	private const int SC_CLOSE = 0xF060;
+	private const int SC_MAXIMIZE = 0xF030;
+
 
 	[DllImport("user32.dll")]
 	private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
@@ -93,5 +95,15 @@ public partial class WindowPropertyItem : UserControl
 			ParentElement.Children.Remove(this);
 		}
 		catch { }
+	}
+
+	private void MaxRestoreBtn_Click(object sender, RoutedEventArgs e)
+	{
+		if (!Global.IsWindowMaximized(WindowInfo.Hwnd))
+		{
+			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
+
+			return;
+		}
 	}
 }
