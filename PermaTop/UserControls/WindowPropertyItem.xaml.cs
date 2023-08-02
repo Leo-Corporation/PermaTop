@@ -23,6 +23,8 @@ SOFTWARE.
 */
 using PermaTop.Classes;
 using PeyrSharp.Env;
+using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -33,10 +35,12 @@ namespace PermaTop.UserControls;
 public partial class WindowPropertyItem : UserControl
 {
 	WindowInfo WindowInfo { get; set; }
-	public WindowPropertyItem(WindowInfo windowInfo)
+	StackPanel ParentElement { get; init; }
+	public WindowPropertyItem(WindowInfo windowInfo, StackPanel parent)
 	{
 		InitializeComponent();
 		WindowInfo = windowInfo;
+		ParentElement = parent;
 
 		InitUI();
 	}
@@ -74,5 +78,20 @@ public partial class WindowPropertyItem : UserControl
 			FavBtn.Content = "\uF71B";
 		}
 		XmlSerializerManager.SaveToXml(Global.Favorites, $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Favs.xml");
+	}
+
+	private const int WM_SYSCOMMAND = 0x0112;
+	private const int SC_CLOSE = 0xF060;
+
+	[DllImport("user32.dll")]
+	private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+	private void CloseBtn_Click(object sender, RoutedEventArgs e)
+	{
+		try
+		{
+			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_CLOSE, IntPtr.Zero);
+			ParentElement.Children.Remove(this);
+		}
+		catch { }
 	}
 }

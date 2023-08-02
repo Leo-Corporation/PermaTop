@@ -44,7 +44,7 @@ public partial class PinWindowsPage : Page
 		var openedWindows = Global.GetWindows();
 		for (int i = 0; i < openedWindows.Count; i++)
 		{
-			WindowDisplayer.Children.Add(new WindowPropertyItem(openedWindows[i]));
+			WindowDisplayer.Children.Add(new WindowPropertyItem(openedWindows[i], WindowDisplayer));
 		}
 	}
 
