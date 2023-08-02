@@ -54,7 +54,8 @@ public partial class WindowPropertyItem : UserControl
 
 		Favorite item = new(WindowInfo.ClassName, WindowInfo.Title, WindowInfo.ProcessName);
 		FavBtn.Content = Global.Favorites.Contains(item) ? "\uF71B" : "\uF710";
-
+		MaxRestoreBtn.Content = Global.IsWindowMaximized(WindowInfo.Hwnd) ? "\uF670" : "\uFA41";
+		MaxRestoreBtn.FontSize = Global.IsWindowMaximized(WindowInfo.Hwnd) ? 18 : 14;
 	}
 
 	private void PinBtn_Click(object sender, RoutedEventArgs e)
@@ -83,6 +84,7 @@ public partial class WindowPropertyItem : UserControl
 	private const int WM_SYSCOMMAND = 0x0112;
 	private const int SC_CLOSE = 0xF060;
 	private const int SC_MAXIMIZE = 0xF030;
+	private const int SC_RESTORE = 0xF120;
 
 
 	[DllImport("user32.dll")]
@@ -102,8 +104,12 @@ public partial class WindowPropertyItem : UserControl
 		if (!Global.IsWindowMaximized(WindowInfo.Hwnd))
 		{
 			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
-
+			MaxRestoreBtn.Content = "\uF670";
+			MaxRestoreBtn.FontSize = 18;
 			return;
 		}
+		SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_RESTORE, IntPtr.Zero);
+		MaxRestoreBtn.Content = "\uFA41";
+		MaxRestoreBtn.FontSize = 14;
 	}
 }
