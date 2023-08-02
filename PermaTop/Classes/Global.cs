@@ -88,7 +88,41 @@ public static class Global
 	internal const int GWL_STYLE = -16;
 	internal const int WS_VISIBLE = 0x10000000;
 
-	public static SolidColorBrush GetSolidColor(string resource) => (SolidColorBrush)Application.Current.Resources[resource];
+	internal const int SW_SHOWNORMAL = 1;
+	internal const int SW_SHOWMINIMIZED = 2;
+	internal const int SW_SHOWMAXIMIZED = 3;
+
+	internal enum WindowPlacementFlags : int
+	{
+		WPF_SETMINPOSITION = 0x0001,
+		WPF_RESTORETOMAXIMIZED = 0x0002,
+		WPF_ASYNCWINDOWPLACEMENT = 0x0004
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	internal struct WINDOWPLACEMENT
+	{
+		public int length;
+		public int flags;
+		public int showCmd;
+		public System.Drawing.Point ptMinPosition;
+		public System.Drawing.Point ptMaxPosition;
+		public System.Drawing.Rectangle rcNormalPosition;
+	}
+
+	[DllImport("user32.dll")]
+	internal static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
+
+	internal static bool IsWindowMaximized(IntPtr windowHandle)
+	{
+		WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
+		placement.length = Marshal.SizeOf(placement);
+		GetWindowPlacement(windowHandle, ref placement);
+
+		return placement.showCmd == SW_SHOWMAXIMIZED;
+	}
+
+	internal static SolidColorBrush GetSolidColor(string resource) => (SolidColorBrush)Application.Current.Resources[resource];
 
 	// Import the SetWindowPos function from user32.dll
 	[DllImport("user32.dll")]
