@@ -66,6 +66,9 @@ public partial class WindowPropertyItem : UserControl
 			// Set the Image control's Source property to display the icon
 			IconImg.Source = iconSource;
 		}
+		Rect windowPosition = Global.GetWindowPosition(WindowInfo.Hwnd);
+		XTxt.Text = windowPosition.Left.ToString();
+		YTxt.Text = windowPosition.Top.ToString();
 	}
 
 	private void PinBtn_Click(object sender, RoutedEventArgs e)
@@ -100,6 +103,8 @@ public partial class WindowPropertyItem : UserControl
 	private const int ICON_SMALL = 0;
 	private const int ICON_BIG = 1;
 	private const uint WM_GETICON = 0x007F;
+	private const uint SWP_NOSIZE = 0x0001;
+	private const uint SWP_NOZORDER = 0x0004;
 
 	[DllImport("user32.dll")]
 	private static extern IntPtr GetClassLong(IntPtr hWnd, int nIndex);
@@ -123,6 +128,14 @@ public partial class WindowPropertyItem : UserControl
 
 	[DllImport("user32.dll")]
 	private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+	[DllImport("user32.dll")]
+	private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
+	private void MoveWindow(IntPtr windowHandle, int x, int y)
+	{
+		SetWindowPos(windowHandle, IntPtr.Zero, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+	}
+
 	private void CloseBtn_Click(object sender, RoutedEventArgs e)
 	{
 		try
@@ -158,5 +171,23 @@ public partial class WindowPropertyItem : UserControl
 			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MINIMIZE, IntPtr.Zero);
 		}
 		catch {	}
+	}
+
+	private void MoreBtn_Click(object sender, RoutedEventArgs e)
+	{
+		MorePopup.IsOpen = !MorePopup.IsOpen;
+	}
+
+	private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+	{
+		bool xValid = int.TryParse(XTxt.Text, out int x);
+		bool yValid = int.TryParse(YTxt.Text, out int y);
+
+		if (!xValid || !yValid)
+		{
+			return;
+		}
+
+		MoveWindow(WindowInfo.Hwnd, x, y);
 	}
 }

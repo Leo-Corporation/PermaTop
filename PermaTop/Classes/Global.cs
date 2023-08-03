@@ -110,6 +110,25 @@ public static class Global
 		public System.Drawing.Rectangle rcNormalPosition;
 	}
 
+	[StructLayout(LayoutKind.Sequential)]
+	private struct RECT
+	{
+		public int Left;
+		public int Top;
+		public int Right;
+		public int Bottom;
+	}
+
+	[DllImport("user32.dll")]
+	[return: MarshalAs(UnmanagedType.Bool)]
+	private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+	
+	internal static Rect GetWindowPosition(IntPtr windowHandle)
+	{
+		GetWindowRect(windowHandle, out RECT windowRect);
+		return new Rect(windowRect.Left, windowRect.Top, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top);
+	}
+
 	[DllImport("user32.dll")]
 	internal static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
 

@@ -4,6 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:PermaTop.UserControls"
+			 xmlns:lang="clr-namespace:PermaTop.Properties"
 			 mc:Ignorable="d" FontFamily="..\Fonts\#Hauora"
 			 Height="50" d:DesignWidth="800" Foreground="{DynamicResource Foreground1}">
 	<Border CornerRadius="10" Padding="5" Margin="5" Background="{DynamicResource CardBackground}">
@@ -21,18 +22,57 @@
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
-            <Image x:Name="IconImg" Grid.Column="0" Margin="5 0" MaxWidth="15" MaxHeight="15"/>
-            <TextBlock x:Name="TitleTxt" FontWeight="ExtraBold" d:Text="WindowTItle" FontSize="14" VerticalAlignment="Center" Grid.Column="1">
+			<Image x:Name="IconImg" Grid.Column="0" Margin="5 0" MaxWidth="15" MaxHeight="15"/>
+			<TextBlock x:Name="TitleTxt" FontWeight="ExtraBold" d:Text="WindowTItle" FontSize="14" VerticalAlignment="Center" Grid.Column="1">
 				<TextBlock.ToolTip>
 					<ToolTip x:Name="TitleToolTip" Foreground="{DynamicResource Foreground1}" Background="{DynamicResource Background1}" />
 				</TextBlock.ToolTip>
 			</TextBlock>
-			<Button Foreground="{DynamicResource Foreground1}" x:Name="FavBtn" Click="FavBtn_Click" Width="30" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF710;" FontSize="14" Margin="0 0 5 0"/>
-			<Button Foreground="{DynamicResource Foreground1}" x:Name="PinBtn" Click="PinBtn_Click" Width="30" Grid.Column="4" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF602;" FontSize="14" Margin="0 0 5 0"/>
-			<Button Foreground="{DynamicResource Foreground1}" x:Name="MinBtn" Click="MinBtn_Click" Width="30" Grid.Column="5" Style="{DynamicResource DefaultButton}" Background="{DynamicResource CardBackground}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF4E0;" FontSize="14" Margin="0 0 5 0"/>
-			<Button Foreground="{DynamicResource Foreground1}" x:Name="MaxRestoreBtn" Click="MaxRestoreBtn_Click" Width="30" Grid.Column="6" Style="{DynamicResource DefaultButton}" Background="{DynamicResource CardBackground}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xFA41;" FontSize="14" Margin="0 0 5 0"/>
-			<Button Foreground="{DynamicResource Foreground1}" x:Name="CloseBtn" Click="CloseBtn_Click" Width="30" Grid.Column="7" Style="{DynamicResource DefaultButton}" Background="{DynamicResource CardBackground}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF36A;" FontSize="14"/>
+			<Button Foreground="{DynamicResource Foreground1}" x:Name="MoreBtn" Click="MoreBtn_Click" Width="30" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xFC2E;" FontSize="14" Margin="0 0 5 0"/>
+			<Button Foreground="{DynamicResource Foreground1}" x:Name="FavBtn" Click="FavBtn_Click" Width="30" Grid.Column="4" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF710;" FontSize="14" Margin="0 0 5 0"/>
+			<Button Foreground="{DynamicResource Foreground1}" x:Name="PinBtn" Click="PinBtn_Click" Width="30" Grid.Column="5" Style="{DynamicResource DefaultButton}" Background="{DynamicResource Background2}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF602;" FontSize="14" Margin="0 0 5 0"/>
+			<Button Foreground="{DynamicResource Foreground1}" x:Name="MinBtn" Click="MinBtn_Click" Width="30" Grid.Column="6" Style="{DynamicResource DefaultButton}" Background="{DynamicResource CardBackground}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF4E0;" FontSize="14" Margin="0 0 5 0"/>
+			<Button Foreground="{DynamicResource Foreground1}" x:Name="MaxRestoreBtn" Click="MaxRestoreBtn_Click" Width="30" Grid.Column="7" Style="{DynamicResource DefaultButton}" Background="{DynamicResource CardBackground}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xFA41;" FontSize="14" Margin="0 0 5 0"/>
+			<Button Foreground="{DynamicResource Foreground1}" x:Name="CloseBtn" Click="CloseBtn_Click" Width="30" Grid.Column="8" Style="{DynamicResource DefaultButton}" Background="{DynamicResource CardBackground}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF36A;" FontSize="14"/>
+
+			<Popup StaysOpen="False" x:Name="MorePopup" Placement="Bottom" PlacementTarget="{Binding ElementName=MoreBtn}" AllowsTransparency="True">
+				<Border Background="{DynamicResource Background1}" Padding="10" CornerRadius="10">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="10" Color="#1F1F1F" Direction="270" Opacity="0.1" ShadowDepth="0"/>
+					</Border.Effect>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Text="{x:Static lang:Resources.Position}" FontWeight="Bold"/>
+						<TextBlock Text="{x:Static lang:Resources.X}" Grid.Row="1" VerticalAlignment="Center" Margin="10" FontWeight="Bold"/>
+						<TextBlock Text="{x:Static lang:Resources.Y}" Grid.Row="2" VerticalAlignment="Center" Margin="10" FontWeight="Bold"/>
+						<Border Grid.Row="1" Background="{DynamicResource CardBackground}" Width="50" CornerRadius="5" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Center">
+							<Border.Effect>
+								<DropShadowEffect Color="{DynamicResource LightAccentColor}" BlurRadius="15" Opacity="0.2" ShadowDepth="0"/>
+							</Border.Effect>
+							<TextBox x:Name="XTxt" Padding="3" Margin="3" BorderThickness="0" FontWeight="Bold" Foreground="{DynamicResource DarkGray}" d:Text="123" Background="Transparent" TextAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="2" Background="{DynamicResource CardBackground}" Width="50" CornerRadius="5" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Center">
+							<Border.Effect>
+								<DropShadowEffect Color="{DynamicResource LightAccentColor}" BlurRadius="15" Opacity="0.2" ShadowDepth="0"/>
+							</Border.Effect>
+							<TextBox x:Name="YTxt" Padding="3" Margin="3" BorderThickness="0" FontWeight="Bold" Foreground="{DynamicResource DarkGray}" d:Text="123" Background="Transparent" TextAlignment="Center"/>
+						</Border>
+						<Button Content="{x:Static lang:Resources.Apply}" x:Name="ApplyBtn" Style="{DynamicResource PrimaryButton}" Click="ApplyBtn_Click" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" Margin="5" Padding="5" Background="{DynamicResource Accent}" FontWeight="Bold" Foreground="{DynamicResource WindowButtonsHoverForeground1}"/>
+					</Grid>
+				</Border>
+			</Popup>
 		</Grid>
 	</Border>
 </UserControl>
