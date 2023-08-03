@@ -9,7 +9,7 @@
 		<ApplicationIcon>PermaTop.ico</ApplicationIcon>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Title>PermaTop</Title>
-		<Version>1.1.0.2308-pre1</Version>
+		<Version>1.1.0.2308-rc1</Version>
 		<Authors>Léo Corporation</Authors>
 		<Company>Léo Corporation</Company>
 		<Description>A simple utility to keep your windows in sight and in control.</Description>
