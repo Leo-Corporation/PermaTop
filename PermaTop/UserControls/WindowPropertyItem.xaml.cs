@@ -56,7 +56,7 @@ public partial class WindowPropertyItem : UserControl
 
 		Favorite item = new(WindowInfo.ClassName, WindowInfo.Title, WindowInfo.ProcessName);
 		FavBtn.Content = Global.Favorites.Contains(item) ? "\uF71B" : "\uF710";
-		MaxRestoreBtn.Content = Global.IsWindowMaximized(WindowInfo.Hwnd) ? "\uF670" : "\uFA41";
+		MaxRestoreBtn.Content = Global.IsWindowMaximized(WindowInfo.Hwnd) ? "\uF670" : "\uFA40";
 		MaxRestoreBtn.FontSize = Global.IsWindowMaximized(WindowInfo.Hwnd) ? 18 : 14;
 
 		IntPtr iconHandle = GetWindowIconHandle(WindowInfo.Hwnd, true); // Set 'true' for large icon, 'false' for small icon
@@ -158,7 +158,7 @@ public partial class WindowPropertyItem : UserControl
 				return;
 			}
 			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_RESTORE, IntPtr.Zero);
-			MaxRestoreBtn.Content = "\uFA41";
+			MaxRestoreBtn.Content = "\uFA40";
 			MaxRestoreBtn.FontSize = 14;
 		}
 		catch {	}
