@@ -46,7 +46,7 @@ public static class Global
 	internal static string SettingsPath => $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Settings.xml";
 	public static Settings Settings { get; set; } = XmlSerializerManager.LoadFromXml<Settings>(SettingsPath) ?? new();
 
-	public static string Version => "1.0.0.2307";
+	public static string Version => "1.1.0.2308";
 	public static string LastVersionLink => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/PermaTop/Version.txt";
 
 	public static string GetHiSentence
@@ -88,7 +88,60 @@ public static class Global
 	internal const int GWL_STYLE = -16;
 	internal const int WS_VISIBLE = 0x10000000;
 
-	public static SolidColorBrush GetSolidColor(string resource) => (SolidColorBrush)Application.Current.Resources[resource];
+	internal const int SW_SHOWNORMAL = 1;
+	internal const int SW_SHOWMINIMIZED = 2;
+	internal const int SW_SHOWMAXIMIZED = 3;
+
+	internal enum WindowPlacementFlags : int
+	{
+		WPF_SETMINPOSITION = 0x0001,
+		WPF_RESTORETOMAXIMIZED = 0x0002,
+		WPF_ASYNCWINDOWPLACEMENT = 0x0004
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	internal struct WINDOWPLACEMENT
+	{
+		public int length;
+		public int flags;
+		public int showCmd;
+		public System.Drawing.Point ptMinPosition;
+		public System.Drawing.Point ptMaxPosition;
+		public System.Drawing.Rectangle rcNormalPosition;
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	private struct RECT
+	{
+		public int Left;
+		public int Top;
+		public int Right;
+		public int Bottom;
+	}
+
+	[DllImport("user32.dll")]
+	[return: MarshalAs(UnmanagedType.Bool)]
+	private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+	
+	internal static Rect GetWindowPosition(IntPtr windowHandle)
+	{
+		GetWindowRect(windowHandle, out RECT windowRect);
+		return new Rect(windowRect.Left, windowRect.Top, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top);
+	}
+
+	[DllImport("user32.dll")]
+	internal static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
+
+	internal static bool IsWindowMaximized(IntPtr windowHandle)
+	{
+		WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
+		placement.length = Marshal.SizeOf(placement);
+		GetWindowPlacement(windowHandle, ref placement);
+
+		return placement.showCmd == SW_SHOWMAXIMIZED;
+	}
+
+	internal static SolidColorBrush GetSolidColor(string resource) => (SolidColorBrush)Application.Current.Resources[resource];
 
 	// Import the SetWindowPos function from user32.dll
 	[DllImport("user32.dll")]

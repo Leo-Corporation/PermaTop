@@ -23,8 +23,12 @@ SOFTWARE.
 */
 using PermaTop.Classes;
 using PeyrSharp.Env;
+using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
 
 namespace PermaTop.UserControls;
 /// <summary>
@@ -33,10 +37,12 @@ namespace PermaTop.UserControls;
 public partial class WindowPropertyItem : UserControl
 {
 	WindowInfo WindowInfo { get; set; }
-	public WindowPropertyItem(WindowInfo windowInfo)
+	StackPanel ParentElement { get; init; }
+	public WindowPropertyItem(WindowInfo windowInfo, StackPanel parent)
 	{
 		InitializeComponent();
 		WindowInfo = windowInfo;
+		ParentElement = parent;
 
 		InitUI();
 	}
@@ -50,7 +56,19 @@ public partial class WindowPropertyItem : UserControl
 
 		Favorite item = new(WindowInfo.ClassName, WindowInfo.Title, WindowInfo.ProcessName);
 		FavBtn.Content = Global.Favorites.Contains(item) ? "\uF71B" : "\uF710";
+		MaxRestoreBtn.Content = Global.IsWindowMaximized(WindowInfo.Hwnd) ? "\uF670" : "\uFA40";
+		MaxRestoreBtn.FontSize = Global.IsWindowMaximized(WindowInfo.Hwnd) ? 18 : 14;
 
+		IntPtr iconHandle = GetWindowIconHandle(WindowInfo.Hwnd, true); // Set 'true' for large icon, 'false' for small icon
+		BitmapSource iconSource = GetIconFromHandle(iconHandle);
+		if (iconSource != null)
+		{
+			// Set the Image control's Source property to display the icon
+			IconImg.Source = iconSource;
+		}
+		Rect windowPosition = Global.GetWindowPosition(WindowInfo.Hwnd);
+		XTxt.Text = windowPosition.Left.ToString();
+		YTxt.Text = windowPosition.Top.ToString();
 	}
 
 	private void PinBtn_Click(object sender, RoutedEventArgs e)
@@ -74,5 +92,102 @@ public partial class WindowPropertyItem : UserControl
 			FavBtn.Content = "\uF71B";
 		}
 		XmlSerializerManager.SaveToXml(Global.Favorites, $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Favs.xml");
+	}
+
+	private const int WM_SYSCOMMAND = 0x0112;
+	private const int SC_CLOSE = 0xF060;
+	private const int SC_MAXIMIZE = 0xF030;
+	private const int SC_RESTORE = 0xF120;
+	private const int SC_MINIMIZE = 0xF020;
+	private const int GCL_HICON = -14;
+	private const int ICON_SMALL = 0;
+	private const int ICON_BIG = 1;
+	private const uint WM_GETICON = 0x007F;
+	private const uint SWP_NOSIZE = 0x0001;
+	private const uint SWP_NOZORDER = 0x0004;
+
+	[DllImport("user32.dll")]
+	private static extern IntPtr GetClassLong(IntPtr hWnd, int nIndex);
+
+	[DllImport("user32.dll", SetLastError = true)]
+	private static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
+
+	private IntPtr GetWindowIconHandle(IntPtr windowHandle, bool largeIcon)
+	{
+		int index = largeIcon ? ICON_BIG : ICON_SMALL;
+		return (IntPtr)SendMessage(windowHandle, WM_GETICON, index, 0);
+	}
+
+	private BitmapSource GetIconFromHandle(IntPtr iconHandle)
+	{
+		if (iconHandle == IntPtr.Zero)
+			return null;
+
+		return Imaging.CreateBitmapSourceFromHIcon(iconHandle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+	}
+
+	[DllImport("user32.dll")]
+	private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+	[DllImport("user32.dll")]
+	private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
+	private void MoveWindow(IntPtr windowHandle, int x, int y)
+	{
+		SetWindowPos(windowHandle, IntPtr.Zero, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+	}
+
+	private void CloseBtn_Click(object sender, RoutedEventArgs e)
+	{
+		try
+		{
+			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_CLOSE, IntPtr.Zero);
+			ParentElement.Children.Remove(this);
+		}
+		catch { }
+	}
+
+	private void MaxRestoreBtn_Click(object sender, RoutedEventArgs e)
+	{
+		try
+		{
+			if (!Global.IsWindowMaximized(WindowInfo.Hwnd))
+			{
+				SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
+				MaxRestoreBtn.Content = "\uF670";
+				MaxRestoreBtn.FontSize = 18;
+				return;
+			}
+			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_RESTORE, IntPtr.Zero);
+			MaxRestoreBtn.Content = "\uFA40";
+			MaxRestoreBtn.FontSize = 14;
+		}
+		catch {	}
+	}
+
+	private void MinBtn_Click(object sender, RoutedEventArgs e)
+	{
+		try
+		{
+			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MINIMIZE, IntPtr.Zero);
+		}
+		catch {	}
+	}
+
+	private void MoreBtn_Click(object sender, RoutedEventArgs e)
+	{
+		MorePopup.IsOpen = !MorePopup.IsOpen;
+	}
+
+	private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+	{
+		bool xValid = int.TryParse(XTxt.Text, out int x);
+		bool yValid = int.TryParse(YTxt.Text, out int y);
+
+		if (!xValid || !yValid)
+		{
+			return;
+		}
+
+		MoveWindow(WindowInfo.Hwnd, x, y);
 	}
 }
