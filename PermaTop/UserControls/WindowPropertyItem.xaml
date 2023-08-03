@@ -38,7 +38,7 @@
 			<Button Foreground="{DynamicResource Foreground1}" x:Name="CloseBtn" Click="CloseBtn_Click" Width="30" Grid.Column="8" Style="{DynamicResource DefaultButton}" Background="{DynamicResource CardBackground}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Content="&#xF36A;" FontSize="14"/>
 
 			<Popup StaysOpen="False" x:Name="MorePopup" Placement="Bottom" PlacementTarget="{Binding ElementName=MoreBtn}" AllowsTransparency="True">
-				<Border Background="{DynamicResource Background1}" Padding="10" CornerRadius="10">
+				<Border Background="{DynamicResource Background1}" Padding="10" CornerRadius="10" Margin="10">
 					<Border.Effect>
 						<DropShadowEffect BlurRadius="10" Color="#1F1F1F" Direction="270" Opacity="0.1" ShadowDepth="0"/>
 					</Border.Effect>
