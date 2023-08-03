@@ -27,6 +27,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
 
 namespace PermaTop.UserControls;
 /// <summary>
@@ -56,6 +58,14 @@ public partial class WindowPropertyItem : UserControl
 		FavBtn.Content = Global.Favorites.Contains(item) ? "\uF71B" : "\uF710";
 		MaxRestoreBtn.Content = Global.IsWindowMaximized(WindowInfo.Hwnd) ? "\uF670" : "\uFA41";
 		MaxRestoreBtn.FontSize = Global.IsWindowMaximized(WindowInfo.Hwnd) ? 18 : 14;
+
+		IntPtr iconHandle = GetWindowIconHandle(WindowInfo.Hwnd, true); // Set 'true' for large icon, 'false' for small icon
+		BitmapSource iconSource = GetIconFromHandle(iconHandle);
+		if (iconSource != null)
+		{
+			// Set the Image control's Source property to display the icon
+			IconImg.Source = iconSource;
+		}
 	}
 
 	private void PinBtn_Click(object sender, RoutedEventArgs e)
@@ -86,6 +96,30 @@ public partial class WindowPropertyItem : UserControl
 	private const int SC_MAXIMIZE = 0xF030;
 	private const int SC_RESTORE = 0xF120;
 	private const int SC_MINIMIZE = 0xF020;
+	private const int GCL_HICON = -14;
+	private const int ICON_SMALL = 0;
+	private const int ICON_BIG = 1;
+	private const uint WM_GETICON = 0x007F;
+
+	[DllImport("user32.dll")]
+	private static extern IntPtr GetClassLong(IntPtr hWnd, int nIndex);
+
+	[DllImport("user32.dll", SetLastError = true)]
+	private static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
+
+	private IntPtr GetWindowIconHandle(IntPtr windowHandle, bool largeIcon)
+	{
+		int index = largeIcon ? ICON_BIG : ICON_SMALL;
+		return (IntPtr)SendMessage(windowHandle, WM_GETICON, index, 0);
+	}
+
+	private BitmapSource GetIconFromHandle(IntPtr iconHandle)
+	{
+		if (iconHandle == IntPtr.Zero)
+			return null;
+
+		return Imaging.CreateBitmapSourceFromHIcon(iconHandle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+	}
 
 	[DllImport("user32.dll")]
 	private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
