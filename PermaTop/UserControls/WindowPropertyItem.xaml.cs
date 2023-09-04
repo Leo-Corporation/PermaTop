@@ -138,6 +138,9 @@ public partial class WindowPropertyItem : UserControl
 		SetWindowPos(windowHandle, IntPtr.Zero, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 	}
 
+	[DllImport("user32.dll")]
+	static extern bool GetWindowRect(IntPtr hWnd, out Global.RECT lpRect);
+
 	private void CloseBtn_Click(object sender, RoutedEventArgs e)
 	{
 		try
@@ -163,7 +166,7 @@ public partial class WindowPropertyItem : UserControl
 			MaxRestoreBtn.Content = "\uFA40";
 			MaxRestoreBtn.FontSize = 14;
 		}
-		catch {	}
+		catch { }
 	}
 
 	private void MinBtn_Click(object sender, RoutedEventArgs e)
@@ -172,7 +175,7 @@ public partial class WindowPropertyItem : UserControl
 		{
 			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MINIMIZE, IntPtr.Zero);
 		}
-		catch {	}
+		catch { }
 	}
 
 	private void MoreBtn_Click(object sender, RoutedEventArgs e)
@@ -203,7 +206,19 @@ public partial class WindowPropertyItem : UserControl
 	{
 		if (ScreenSelector.SelectedIndex >= 0)
 		{
-			MoveWindow(WindowInfo.Hwnd, _screens[ScreenSelector.SelectedIndex].Bounds.Left, _screens[ScreenSelector.SelectedIndex].Bounds.Top);
+			GetWindowRect(WindowInfo.Hwnd, out Global.RECT rect);
+			var screen = _screens[ScreenSelector.SelectedIndex];
+
+			int centerX = (screen.Bounds.Left + screen.Bounds.Right) / 2;
+			int centerY = (screen.Bounds.Top + screen.Bounds.Bottom) / 2;
+
+			int width = rect.Right - rect.Left;
+			int height = rect.Bottom - rect.Top;
+			// Adjust the coordinates to account for the window size
+			int windowX = centerX - (int)(width / 2);
+			int windowY = centerY - (int)(height / 2);
+			
+			MoveWindow(WindowInfo.Hwnd, windowX, windowY);
 		}
 	}
 
