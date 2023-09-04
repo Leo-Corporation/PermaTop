@@ -52,7 +52,10 @@ public partial class WindowPropertyItem : UserControl
 	private void InitUI()
 	{
 		TitleTxt.Text = WindowInfo.Title.Length > 50 ? WindowInfo.Title[0..50] + "..." : WindowInfo.Title;
-		TitleToolTip.Content = WindowInfo.Title;
+
+		GetWindowRect(WindowInfo.Hwnd, out Global.RECT bounds);
+
+		TitleToolTip.Content = $"{WindowInfo.Title}\n{bounds.Right - bounds.Left}x{bounds.Bottom - bounds.Top}";
 
 		PinBtn.Content = WindowInfo.IsPinned ? "\uF604" : "\uF602";
 
@@ -217,7 +220,7 @@ public partial class WindowPropertyItem : UserControl
 			// Adjust the coordinates to account for the window size
 			int windowX = centerX - (int)(width / 2);
 			int windowY = centerY - (int)(height / 2);
-			
+
 			MoveWindow(WindowInfo.Hwnd, windowX, windowY);
 		}
 	}
