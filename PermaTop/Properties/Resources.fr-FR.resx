@@ -288,4 +288,13 @@
   <data name="Position" xml:space="preserve">
     <value>Position</value>
   </data>
+  <data name="SetPosition" xml:space="preserve">
+    <value>Définir la position</value>
+  </data>
+  <data name="MoveToScreen" xml:space="preserve">
+    <value>Déplacer à l'écran</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Déplacer</value>
+  </data>
 </root>

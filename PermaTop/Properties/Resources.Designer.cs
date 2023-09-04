@@ -340,6 +340,24 @@ namespace PermaTop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        public static string Move {
+            get {
+                return ResourceManager.GetString("Move", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move to screen.
+        /// </summary>
+        public static string MoveToScreen {
+            get {
+                return ResourceManager.GetString("MoveToScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PermaTop needs to restart to apply the changes. Do you want to restart now?.
         /// </summary>
         public static string NeedRestartToApplyChanges {
@@ -471,6 +489,15 @@ namespace PermaTop.Properties {
         public static string SeeLicenses {
             get {
                 return ResourceManager.GetString("SeeLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set position.
+        /// </summary>
+        public static string SetPosition {
+            get {
+                return ResourceManager.GetString("SetPosition", resourceCulture);
             }
         }
         
