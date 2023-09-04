@@ -46,7 +46,7 @@ public static class Global
 	internal static string SettingsPath => $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Settings.xml";
 	public static Settings Settings { get; set; } = XmlSerializerManager.LoadFromXml<Settings>(SettingsPath) ?? new();
 
-	public static string Version => "1.1.0.2308";
+	public static string Version => "1.2.0.2309";
 	public static string LastVersionLink => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/PermaTop/Version.txt";
 
 	public static string GetHiSentence
@@ -111,7 +111,7 @@ public static class Global
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	private struct RECT
+	public struct RECT
 	{
 		public int Left;
 		public int Top;
@@ -206,6 +206,44 @@ public static class Global
 			return true;
 		}, IntPtr.Zero);
 		return windowInfos;
+	}
+
+	[DllImport("user32.dll")]
+	static extern bool EnumDisplayMonitors(IntPtr hdc, IntPtr lprcClip,
+	MonitorEnumProc lpfnEnum, IntPtr dwData);
+
+	[DllImport("user32.dll")]
+	static extern bool GetMonitorInfo(IntPtr hMonitor, ref MonitorInfo lpmi);
+
+	delegate bool MonitorEnumProc(IntPtr hMonitor, IntPtr hdcMonitor,
+		RECT lprcMonitor, IntPtr dwData);
+
+	[StructLayout(LayoutKind.Sequential)]
+	struct MonitorInfo
+	{
+		public uint Size;
+		public RECT Monitor;
+		public RECT WorkArea;
+		public uint Flags;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+		public string DeviceName;
+	}
+
+	public static List<ScreenInfo> GetScreenInfos()
+	{
+		var screenInfos = new List<ScreenInfo>();
+		EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero,
+			(hMonitor, hdcMonitor, lprcMonitor, dwData) =>
+			{
+				var mi = new MonitorInfo();
+				mi.Size = (uint)Marshal.SizeOf(mi);
+				if (GetMonitorInfo(hMonitor, ref mi))
+				{
+					screenInfos.Add(new ScreenInfo(mi.DeviceName, lprcMonitor));
+				}
+				return true; // Continue enumeration
+			}, IntPtr.Zero);
+		return screenInfos;
 	}
 
 	public static void SetWindowTopMost(IntPtr hWnd, bool topMost)
