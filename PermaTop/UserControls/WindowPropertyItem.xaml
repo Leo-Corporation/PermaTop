@@ -276,7 +276,46 @@
                             Padding="2"
                             HorizontalContentAlignment="Left"
                             Background="Transparent"
+                            Click="SetScreenBtn_Click"
                             Content="{x:Static lang:Resources.MoveToScreen}"
+                            FontWeight="Bold"
+                            Style="{DynamicResource PrimaryButton}" />
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <Popup
+                x:Name="ScreenPopup"
+                AllowsTransparency="True"
+                Placement="Bottom"
+                PlacementTarget="{Binding ElementName=MoreBtn}"
+                StaysOpen="False">
+                <Border
+                    Margin="10"
+                    Padding="10"
+                    Background="{DynamicResource Background1}"
+                    CornerRadius="10">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="10"
+                            Direction="270"
+                            Opacity="0.1"
+                            ShadowDepth="0"
+                            Color="#1F1F1F" />
+                    </Border.Effect>
+
+                    <StackPanel>
+                        <ComboBox
+                            x:Name="ScreenSelector"
+                            Margin="0 0 0 10"
+                            Foreground="{DynamicResource Foreground1}"
+                            Style="{DynamicResource ComboBoxStyle1}" />
+                        <Button
+                            x:Name="MoveBtn"
+                            Padding="2"
+                            HorizontalAlignment="Center"
+                            Background="Transparent"
+                            Click="MoveBtn_Click"
+                            Content="{x:Static lang:Resources.SetPosition}"
                             FontWeight="Bold"
                             Style="{DynamicResource PrimaryButton}" />
                     </StackPanel>

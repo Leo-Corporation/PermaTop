@@ -24,6 +24,8 @@ SOFTWARE.
 using PermaTop.Classes;
 using PeyrSharp.Env;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -195,5 +197,29 @@ public partial class WindowPropertyItem : UserControl
 	{
 		SizePopup.IsOpen = true;
 		ContextMenu.IsOpen = false;
+	}
+	List<ScreenInfo> _screens = Global.GetScreenInfos();
+	private void MoveBtn_Click(object sender, RoutedEventArgs e)
+	{
+		if (ScreenSelector.SelectedIndex >= 0)
+		{
+			MoveWindow(WindowInfo.Hwnd, _screens[ScreenSelector.SelectedIndex].Bounds.Left, _screens[ScreenSelector.SelectedIndex].Bounds.Top);
+		}
+	}
+
+	private void SetScreenBtn_Click(object sender, RoutedEventArgs e)
+	{
+		ScreenPopup.IsOpen = true;
+		ContextMenu.IsOpen = false;
+		LoadScreens();
+	}
+
+	private void LoadScreens()
+	{
+		ScreenSelector.Items.Clear();
+		for (int i = 0; i < _screens.Count; i++)
+		{
+			ScreenSelector.Items.Add($"{_screens[i].Name} ({_screens[i].Bounds.Right - _screens[i].Bounds.Left}x{_screens[i].Bounds.Bottom - _screens[i].Bounds.Top})");
+		}
 	}
 }

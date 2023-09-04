@@ -111,7 +111,7 @@ public static class Global
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	private struct RECT
+	public struct RECT
 	{
 		public int Left;
 		public int Top;
@@ -206,6 +206,44 @@ public static class Global
 			return true;
 		}, IntPtr.Zero);
 		return windowInfos;
+	}
+
+	[DllImport("user32.dll")]
+	static extern bool EnumDisplayMonitors(IntPtr hdc, IntPtr lprcClip,
+	MonitorEnumProc lpfnEnum, IntPtr dwData);
+
+	[DllImport("user32.dll")]
+	static extern bool GetMonitorInfo(IntPtr hMonitor, ref MonitorInfo lpmi);
+
+	delegate bool MonitorEnumProc(IntPtr hMonitor, IntPtr hdcMonitor,
+		RECT lprcMonitor, IntPtr dwData);
+
+	[StructLayout(LayoutKind.Sequential)]
+	struct MonitorInfo
+	{
+		public uint Size;
+		public RECT Monitor;
+		public RECT WorkArea;
+		public uint Flags;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+		public string DeviceName;
+	}
+
+	public static List<ScreenInfo> GetScreenInfos()
+	{
+		var screenInfos = new List<ScreenInfo>();
+		EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero,
+			(hMonitor, hdcMonitor, lprcMonitor, dwData) =>
+			{
+				var mi = new MonitorInfo();
+				mi.Size = (uint)Marshal.SizeOf(mi);
+				if (GetMonitorInfo(hMonitor, ref mi))
+				{
+					screenInfos.Add(new ScreenInfo(mi.DeviceName, lprcMonitor));
+				}
+				return true; // Continue enumeration
+			}, IntPtr.Zero);
+		return screenInfos;
 	}
 
 	public static void SetWindowTopMost(IntPtr hWnd, bool topMost)
