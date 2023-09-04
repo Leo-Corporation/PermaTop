@@ -175,7 +175,7 @@ public partial class WindowPropertyItem : UserControl
 
 	private void MoreBtn_Click(object sender, RoutedEventArgs e)
 	{
-		MorePopup.IsOpen = !MorePopup.IsOpen;
+		ContextMenu.IsOpen = !ContextMenu.IsOpen;
 	}
 
 	private void ApplyBtn_Click(object sender, RoutedEventArgs e)
@@ -189,5 +189,11 @@ public partial class WindowPropertyItem : UserControl
 		}
 
 		MoveWindow(WindowInfo.Hwnd, x, y);
+	}
+
+	private void SetPosBtn_Click(object sender, RoutedEventArgs e)
+	{
+		SizePopup.IsOpen = true;
+		ContextMenu.IsOpen = false;
 	}
 }
