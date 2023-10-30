@@ -286,4 +286,16 @@
   <data name="Show" xml:space="preserve">
     <value>Show</value>
   </data>
+  <data name="Restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="Maximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="ManageWindows" xml:space="preserve">
+    <value>Manage windows</value>
+  </data>
+  <data name="UnPin" xml:space="preserve">
+    <value>Unpin</value>
+  </data>
 </root>

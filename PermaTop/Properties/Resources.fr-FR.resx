@@ -306,4 +306,16 @@
   <data name="Show" xml:space="preserve">
     <value>Montrer</value>
   </data>
+  <data name="Restore" xml:space="preserve">
+    <value>Restorer</value>
+  </data>
+  <data name="Maximize" xml:space="preserve">
+    <value>Maximiser</value>
+  </data>
+  <data name="ManageWindows" xml:space="preserve">
+    <value>Gérer les fenêtres</value>
+  </data>
+  <data name="UnPin" xml:space="preserve">
+    <value>Désépingler</value>
+  </data>
 </root>
