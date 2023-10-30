@@ -165,6 +165,11 @@
                             Foreground="{DynamicResource Foreground1}"
                             Header="{x:Static lang:Resources.Hide}"
                             Style="{DynamicResource MenuStyle}" />
+                        <MenuItem
+                            x:Name="WindowsMenu"
+                            Foreground="{DynamicResource Foreground1}"
+                            Header="{x:Static lang:Resources.ManageWindows}"
+                            Style="{DynamicResource MenuStyle}" />
                         <Separator Foreground="{DynamicResource Foreground1}" />
                         <MenuItem
                             x:Name="QuitMenu"
