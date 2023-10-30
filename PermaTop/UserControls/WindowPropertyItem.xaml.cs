@@ -49,11 +49,16 @@ public partial class WindowPropertyItem : UserControl
 		InitUI();
 	}
 
+	internal void MoveWindow(IntPtr windowHandle, int x, int y)
+	{
+		Global.SetWindowPos(windowHandle, IntPtr.Zero, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+	}
+
 	private void InitUI()
 	{
 		TitleTxt.Text = WindowInfo.Title.Length > 50 ? WindowInfo.Title[0..50] + "..." : WindowInfo.Title;
 
-		GetWindowRect(WindowInfo.Hwnd, out Global.RECT bounds);
+		Global.GetWindowRect(WindowInfo.Hwnd, out Global.RECT bounds);
 
 		TitleToolTip.Content = $"{WindowInfo.Title}\n{bounds.Right - bounds.Left}x{bounds.Bottom - bounds.Top}";
 
@@ -74,6 +79,20 @@ public partial class WindowPropertyItem : UserControl
 		Rect windowPosition = Global.GetWindowPosition(WindowInfo.Hwnd);
 		XTxt.Text = windowPosition.Left.ToString();
 		YTxt.Text = windowPosition.Top.ToString();
+	}
+
+	internal IntPtr GetWindowIconHandle(IntPtr windowHandle, bool largeIcon)
+	{
+		int index = largeIcon ? ICON_BIG : ICON_SMALL;
+		return (IntPtr)Global.SendMessage(windowHandle, WM_GETICON, index, 0);
+	}
+
+	internal BitmapSource GetIconFromHandle(IntPtr iconHandle)
+	{
+		if (iconHandle == IntPtr.Zero)
+			return null;
+
+		return Imaging.CreateBitmapSourceFromHIcon(iconHandle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 	}
 
 	private void PinBtn_Click(object sender, RoutedEventArgs e)
@@ -111,44 +130,11 @@ public partial class WindowPropertyItem : UserControl
 	private const uint SWP_NOSIZE = 0x0001;
 	private const uint SWP_NOZORDER = 0x0004;
 
-	[DllImport("user32.dll")]
-	private static extern IntPtr GetClassLong(IntPtr hWnd, int nIndex);
-
-	[DllImport("user32.dll", SetLastError = true)]
-	private static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
-
-	private IntPtr GetWindowIconHandle(IntPtr windowHandle, bool largeIcon)
-	{
-		int index = largeIcon ? ICON_BIG : ICON_SMALL;
-		return (IntPtr)SendMessage(windowHandle, WM_GETICON, index, 0);
-	}
-
-	private BitmapSource GetIconFromHandle(IntPtr iconHandle)
-	{
-		if (iconHandle == IntPtr.Zero)
-			return null;
-
-		return Imaging.CreateBitmapSourceFromHIcon(iconHandle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-	}
-
-	[DllImport("user32.dll")]
-	private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
-
-	[DllImport("user32.dll")]
-	private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
-	private void MoveWindow(IntPtr windowHandle, int x, int y)
-	{
-		SetWindowPos(windowHandle, IntPtr.Zero, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
-	}
-
-	[DllImport("user32.dll")]
-	static extern bool GetWindowRect(IntPtr hWnd, out Global.RECT lpRect);
-
 	private void CloseBtn_Click(object sender, RoutedEventArgs e)
 	{
 		try
 		{
-			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_CLOSE, IntPtr.Zero);
+			Global.SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_CLOSE, IntPtr.Zero);
 			ParentElement.Children.Remove(this);
 		}
 		catch { }
@@ -160,12 +146,12 @@ public partial class WindowPropertyItem : UserControl
 		{
 			if (!Global.IsWindowMaximized(WindowInfo.Hwnd))
 			{
-				SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
+				Global.SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
 				MaxRestoreBtn.Content = "\uF670";
 				MaxRestoreBtn.FontSize = 18;
 				return;
 			}
-			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_RESTORE, IntPtr.Zero);
+			Global.SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_RESTORE, IntPtr.Zero);
 			MaxRestoreBtn.Content = "\uFA40";
 			MaxRestoreBtn.FontSize = 14;
 		}
@@ -176,7 +162,7 @@ public partial class WindowPropertyItem : UserControl
 	{
 		try
 		{
-			SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MINIMIZE, IntPtr.Zero);
+			Global.SendMessage(WindowInfo.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MINIMIZE, IntPtr.Zero);
 		}
 		catch { }
 	}
@@ -209,7 +195,7 @@ public partial class WindowPropertyItem : UserControl
 	{
 		if (ScreenSelector.SelectedIndex >= 0)
 		{
-			GetWindowRect(WindowInfo.Hwnd, out Global.RECT rect);
+			Global.GetWindowRect(WindowInfo.Hwnd, out Global.RECT rect);
 			var screen = _screens[ScreenSelector.SelectedIndex];
 
 			int centerX = (screen.Bounds.Left + screen.Bounds.Right) / 2;

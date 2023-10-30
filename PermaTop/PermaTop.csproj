@@ -9,7 +9,7 @@
 		<ApplicationIcon>PermaTop.ico</ApplicationIcon>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Title>PermaTop</Title>
-		<Version>1.2.0.2309</Version>
+		<Version>1.3.0.2311</Version>
 		<Authors>Léo Corporation</Authors>
 		<Company>Léo Corporation</Company>
 		<Description>A simple utility to keep your windows in sight and in control.</Description>
@@ -27,18 +27,23 @@
 		<None Remove="Images\DarkTheme.png" />
 		<None Remove="Images\Light.png" />
 		<None Remove="Images\LightTheme.png" />
+		<None Remove="Images\PermaTop.ico" />
 		<None Remove="Images\SystemTheme.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Images\PermaTop.ico">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
 		<Content Include="PermaTop.ico">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PeyrSharp.Core" Version="1.9.0.2309" />
-		<PackageReference Include="PeyrSharp.Env" Version="1.9.0.2309" />
+		<PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
+		<PackageReference Include="PeyrSharp.Core" Version="1.10.0.2310" />
+		<PackageReference Include="PeyrSharp.Env" Version="1.10.0.2310" />
 	</ItemGroup>
 
 	<ItemGroup>

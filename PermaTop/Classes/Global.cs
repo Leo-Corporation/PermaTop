@@ -33,7 +33,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Windows;
+using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace PermaTop.Classes;
 public static class Global
@@ -46,7 +48,7 @@ public static class Global
 	internal static string SettingsPath => $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Settings.xml";
 	public static Settings Settings { get; set; } = XmlSerializerManager.LoadFromXml<Settings>(SettingsPath) ?? new();
 
-	public static string Version => "1.2.0.2309";
+	public static string Version => "1.3.0.2311";
 	public static string LastVersionLink => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/PermaTop/Version.txt";
 
 	public static string GetHiSentence
@@ -121,7 +123,7 @@ public static class Global
 
 	[DllImport("user32.dll")]
 	[return: MarshalAs(UnmanagedType.Bool)]
-	private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+	internal static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
 	
 	internal static Rect GetWindowPosition(IntPtr windowHandle)
 	{
@@ -340,4 +342,17 @@ public static class Global
 				break;
 		}
 	}
+
+	[DllImport("user32.dll")]
+	internal static extern IntPtr GetClassLong(IntPtr hWnd, int nIndex);
+
+	[DllImport("user32.dll", SetLastError = true)]
+	internal static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
+	
+
+	[DllImport("user32.dll")]
+	internal static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+	[DllImport("user32.dll")]
+	internal static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
 }

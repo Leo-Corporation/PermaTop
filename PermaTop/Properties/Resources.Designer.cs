@@ -241,6 +241,15 @@ namespace PermaTop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide.
+        /// </summary>
+        public static string Hide {
+            get {
+                return ResourceManager.GetString("Hide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -318,6 +327,24 @@ namespace PermaTop.Properties {
         public static string Light {
             get {
                 return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage windows.
+        /// </summary>
+        public static string ManageWindows {
+            get {
+                return ResourceManager.GetString("ManageWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximize.
+        /// </summary>
+        public static string Maximize {
+            get {
+                return ResourceManager.GetString("Maximize", resourceCulture);
             }
         }
         
@@ -466,6 +493,15 @@ namespace PermaTop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        public static string Quit {
+            get {
+                return ResourceManager.GetString("Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset settings.
         /// </summary>
         public static string ResetSettings {
@@ -480,6 +516,15 @@ namespace PermaTop.Properties {
         public static string ResetSettingsConfirmation {
             get {
                 return ResourceManager.GetString("ResetSettingsConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore.
+        /// </summary>
+        public static string Restore {
+            get {
+                return ResourceManager.GetString("Restore", resourceCulture);
             }
         }
         
@@ -529,6 +574,15 @@ namespace PermaTop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show.
+        /// </summary>
+        public static string Show {
+            get {
+                return ResourceManager.GetString("Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default page on start.
         /// </summary>
         public static string StartupPage {
@@ -543,6 +597,15 @@ namespace PermaTop.Properties {
         public static string Theme {
             get {
                 return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unpin.
+        /// </summary>
+        public static string UnPin {
+            get {
+                return ResourceManager.GetString("UnPin", resourceCulture);
             }
         }
         

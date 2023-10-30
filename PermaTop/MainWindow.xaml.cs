@@ -22,6 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using PermaTop.Classes;
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -47,6 +49,8 @@ public partial class MainWindow : Window
 		{
 			CheckButton(SettingsPageBtn);
 		};
+
+		WindowsMenu.Loaded += (o, e) => { GenerateMenu(); };
 	}
 
 	private void CheckButton(Button btn)
@@ -96,5 +100,116 @@ public partial class MainWindow : Window
 
 		UnCheckAllButton();
 		CheckButton(SettingsPageBtn);
+	}
+
+	bool isHidden = false;
+	private void HideMenu_Click(object sender, RoutedEventArgs e)
+	{
+
+		isHidden = !isHidden;
+		if (isHidden)
+		{
+			Hide();
+			HideMenu.Header = Properties.Resources.Show;
+
+			return;
+		}
+		Show();
+		HideMenu.Header = Properties.Resources.Hide;
+	}
+
+	private void QuitMenu_Click(object sender, RoutedEventArgs e)
+	{
+		Application.Current.Shutdown();
+	}
+
+	private const int WM_SYSCOMMAND = 0x0112;
+	private const int SC_CLOSE = 0xF060;
+	private const int SC_MAXIMIZE = 0xF030;
+	private const int SC_RESTORE = 0xF120;
+	private const int SC_MINIMIZE = 0xF020;
+	private const int GCL_HICON = -14;
+	private const int ICON_SMALL = 0;
+	private const int ICON_BIG = 1;
+	private const uint WM_GETICON = 0x007F;
+	private const uint SWP_NOSIZE = 0x0001;
+	private const uint SWP_NOZORDER = 0x0004;
+	private void GenerateMenu()
+	{
+		WindowsMenu.Items.Clear();
+		var windows = Global.GetWindows();
+		foreach (var window in windows)
+		{
+			var menu = new MenuItem() { Header = window.Title, Style = (Style)Application.Current.Resources["MenuStyle"] };
+
+			var closeMenu = new MenuItem() { Header = Properties.Resources.Close, Style = (Style)Application.Current.Resources["MenuStyle"] };
+			closeMenu.Click += (o, e) =>
+			{
+				MessageBox.Show(window.Title);
+				try
+				{
+					Global.SendMessage(window.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_CLOSE, IntPtr.Zero);
+				}
+				catch { }
+			};
+
+			var maxMenu = new MenuItem() { Header = Properties.Resources.Maximize, Style = (Style)Application.Current.Resources["MenuStyle"] };
+			maxMenu.Click += (o, e) =>
+			{
+				try
+				{
+					Global.SendMessage(window.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MAXIMIZE, IntPtr.Zero);
+				}
+				catch { }
+			};
+
+			var restoreMenu = new MenuItem() { Header = Properties.Resources.Restore, Style = (Style)Application.Current.Resources["MenuStyle"] };
+			restoreMenu.Click += (o, e) =>
+			{
+				try
+				{
+					Global.SendMessage(window.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_RESTORE, IntPtr.Zero);
+				}
+				catch  { }
+			};
+
+			var minMenu = new MenuItem() { Header = Properties.Resources.Minimize, Style = (Style)Application.Current.Resources["MenuStyle"] };
+			minMenu.Click += (o, e) =>
+			{
+				try
+				{
+					Global.SendMessage(window.Hwnd, WM_SYSCOMMAND, (IntPtr)SC_MINIMIZE, IntPtr.Zero);
+				}
+				catch { }
+			};
+
+			var pinMenu = new MenuItem() { Header = Properties.Resources.Pin, Style = (Style)Application.Current.Resources["MenuStyle"] };
+			pinMenu.Click += (o, e) =>
+			{
+				try
+				{
+					Global.SetWindowTopMost(window.Hwnd, true);
+				}
+				catch { }
+			};
+
+			var unpinMenu = new MenuItem() { Header = Properties.Resources.UnPin, Style = (Style)Application.Current.Resources["MenuStyle"] };
+			unpinMenu.Click += (o, e) =>
+			{
+				try
+				{
+					Global.SetWindowTopMost(window.Hwnd, false);
+				}
+				catch { }
+			};
+
+			menu.Items.Add(closeMenu);
+			menu.Items.Add(maxMenu);
+			menu.Items.Add(restoreMenu);
+			menu.Items.Add(minMenu);
+			menu.Items.Add(pinMenu);
+			menu.Items.Add(unpinMenu);
+			WindowsMenu.Items.Add(menu);
+		}
 	}
 }
