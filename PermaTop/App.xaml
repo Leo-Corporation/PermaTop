@@ -65,15 +65,106 @@
                         <ControlTemplate TargetType="MenuItem">
                             <Border
                                 x:Name="Border"
-                                MinWidth="100"
                                 Padding="2"
                                 Background="{TemplateBinding Background}"
-                                CornerRadius="5">
-                                <ContentPresenter Margin="2" ContentSource="Header" />
+                                CornerRadius="5"
+                                SnapsToDevicePixels="False">
+                                <Grid x:Name="Grid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition
+                                            x:Name="Col0"
+                                            Width="Auto"
+                                            MinWidth="17"
+                                            SharedSizeGroup="MenuItemIconColumnGroup" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="MenuTextColumnGroup" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIGTColumnGroup" />
+                                        <ColumnDefinition x:Name="Col3" Width="14" />
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter
+                                        x:Name="Icon"
+                                        Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        ContentSource="Icon" />
+                                    <ContentPresenter
+                                        x:Name="HeaderHost"
+                                        Grid.Column="1"
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"
+                                        ContentSource="Header"
+                                        RecognizesAccessKey="True" />
+                                    <ContentPresenter
+                                        x:Name="IGTHost"
+                                        Grid.Column="2"
+                                        Margin="8 1 8 1"
+                                        VerticalAlignment="Center"
+                                        ContentSource="InputGestureText" />
+                                    <Grid
+                                        x:Name="ArrowPanel"
+                                        Grid.Column="3"
+                                        Margin="4 0 6 0"
+                                        VerticalAlignment="Center">
+                                        <Path
+                                            x:Name="ArrowPanelPath"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Data="M0,0 L0,8 L4,4 z"
+                                            Fill="{TemplateBinding Foreground}" />
+                                    </Grid>
+                                    <Popup
+                                        x:Name="SubMenuPopup"
+                                        AllowsTransparency="True"
+                                        Focusable="false"
+                                        HorizontalOffset="-1"
+                                        IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Placement="Right"
+                                        PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+                                        <Grid Margin="0 0 5 5">
+                                            <!--  Border 2  -->
+                                            <Border
+                                                x:Name="SubMenuBorder"
+                                                Padding="2"
+                                                Background="{DynamicResource Background1}"
+                                                BorderBrush="{DynamicResource Background1}"
+                                                BorderThickness="1"
+                                                CornerRadius="5"
+                                                SnapsToDevicePixels="True">
+                                                <Grid
+                                                    x:Name="SubMenu"
+                                                    Margin="2"
+                                                    Grid.IsSharedSizeScope="True">
+                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                                </Grid>
+                                                <Border.Effect>
+                                                    <DropShadowEffect
+                                                        BlurRadius="10"
+                                                        Opacity="0.4"
+                                                        RenderingBias="Quality"
+                                                        ShadowDepth="0"
+                                                        Color="Black" />
+                                                </Border.Effect>
+                                            </Border>
+                                            <!--  Border 3  -->
+                                            <Border
+                                                x:Name="TransitionBorder"
+                                                Width="0"
+                                                Height="2"
+                                                Margin="1 0 0 0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                Background="{DynamicResource Background1}"
+                                                BorderBrush="{DynamicResource Background1}"
+                                                BorderThickness="1"
+                                                SnapsToDevicePixels="False" />
+                                        </Grid>
+                                    </Popup>
+                                </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter TargetName="Border" Property="Background" Value="{DynamicResource Background2}" />
+                                </Trigger>
+                                <Trigger Property="HasItems" Value="False">
+                                    <Setter TargetName="ArrowPanel" Property="Visibility" Value="Collapsed" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
