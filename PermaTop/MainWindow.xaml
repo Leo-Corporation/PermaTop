@@ -155,7 +155,7 @@
                         </ContextMenu.Template>
                         <MenuItem
                             x:Name="SettingsMenu"
-                            Click="SettingsMenu_Click"
+                            Click="SettingsPageBtn_Click"
                             Foreground="{DynamicResource Foreground1}"
                             Header="{x:Static lang:Resources.Settings}"
                             Style="{DynamicResource MenuStyle}" />

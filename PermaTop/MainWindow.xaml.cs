@@ -98,18 +98,23 @@ public partial class MainWindow : Window
 		CheckButton(SettingsPageBtn);
 	}
 
-	private void SettingsMenu_Click(object sender, RoutedEventArgs e)
-	{
-
-    }
-
+	bool isHidden = false;
 	private void HideMenu_Click(object sender, RoutedEventArgs e)
 	{
+		isHidden = !isHidden;
+		if (isHidden)
+		{
+			Hide();
+			HideMenu.Header = Properties.Resources.Show;
 
+			return;
+		}
+		Show();
+		HideMenu.Header = Properties.Resources.Hide;
     }
 
 	private void QuitMenu_Click(object sender, RoutedEventArgs e)
 	{
-
-    }
+		Application.Current.Shutdown();
+	}
 }
