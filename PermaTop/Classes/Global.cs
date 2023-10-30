@@ -48,7 +48,7 @@ public static class Global
 	internal static string SettingsPath => $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Settings.xml";
 	public static Settings Settings { get; set; } = XmlSerializerManager.LoadFromXml<Settings>(SettingsPath) ?? new();
 
-	public static string Version => "1.2.0.2309";
+	public static string Version => "1.3.0.2311-rc1";
 	public static string LastVersionLink => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/PermaTop/Version.txt";
 
 	public static string GetHiSentence
