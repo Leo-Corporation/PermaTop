@@ -297,4 +297,13 @@
   <data name="Move" xml:space="preserve">
     <value>Déplacer</value>
   </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Cacher</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Montrer</value>
+  </data>
 </root>
