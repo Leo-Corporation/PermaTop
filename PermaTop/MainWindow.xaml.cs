@@ -97,4 +97,19 @@ public partial class MainWindow : Window
 		UnCheckAllButton();
 		CheckButton(SettingsPageBtn);
 	}
+
+	private void SettingsMenu_Click(object sender, RoutedEventArgs e)
+	{
+
+    }
+
+	private void HideMenu_Click(object sender, RoutedEventArgs e)
+	{
+
+    }
+
+	private void QuitMenu_Click(object sender, RoutedEventArgs e)
+	{
+
+    }
 }

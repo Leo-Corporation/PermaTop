@@ -27,16 +27,21 @@
 		<None Remove="Images\DarkTheme.png" />
 		<None Remove="Images\Light.png" />
 		<None Remove="Images\LightTheme.png" />
+		<None Remove="Images\PermaTop.ico" />
 		<None Remove="Images\SystemTheme.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Images\PermaTop.ico">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
 		<Content Include="PermaTop.ico">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
 		<PackageReference Include="PeyrSharp.Core" Version="1.10.0.2310" />
 		<PackageReference Include="PeyrSharp.Env" Version="1.10.0.2310" />
 	</ItemGroup>
