@@ -127,8 +127,8 @@ namespace PermaTop.Pages
 		{
 			MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
 			"Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
-			"PeyrSharp - MIT License - © 2022-2023 Léo Corporation\n" +
-			"PermaTop - MIT License - © 2023 Léo Corporation", $"{Properties.Resources.PermaTop} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+			"PeyrSharp - MIT License - © 2022-2024 Devyus\n" +
+			"PermaTop - MIT License - © 2023-2024 Léo Corporation", $"{Properties.Resources.PermaTop} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		Border ThemeSelectedBorder;

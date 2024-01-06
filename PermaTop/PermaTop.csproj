@@ -13,7 +13,7 @@
 		<Authors>Léo Corporation</Authors>
 		<Company>Léo Corporation</Company>
 		<Description>A simple utility to keep your windows in sight and in control.</Description>
-		<Copyright>© 2023</Copyright>
+		<Copyright>© 2024</Copyright>
 		<RepositoryUrl>https://github.com/Leo-Corporation/PermaTop</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/Leo-Corporation/PermaTop</PackageProjectUrl>
 	</PropertyGroup>
