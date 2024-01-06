@@ -318,4 +318,10 @@
   <data name="UnPin" xml:space="preserve">
     <value>Désépingler</value>
   </data>
+  <data name="LaunchOnStart" xml:space="preserve">
+    <value>Lancer PermaTop lors du démarrage de Windows</value>
+  </data>
+  <data name="PermaTopOnStartInfo" xml:space="preserve">
+    <value>PermaTop démarrera minimisé dans la barre d'état système si vous activez cette option.</value>
+  </data>
 </root>
