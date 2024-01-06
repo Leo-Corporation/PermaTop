@@ -270,6 +270,7 @@
                             Click="SetPosBtn_Click"
                             Content="{x:Static lang:Resources.SetPosition}"
                             FontWeight="Bold"
+                            Foreground="{DynamicResource Foreground1}"
                             Style="{DynamicResource PrimaryButton}" />
                         <Button
                             x:Name="SetScreenBtn"
@@ -279,6 +280,7 @@
                             Click="SetScreenBtn_Click"
                             Content="{x:Static lang:Resources.MoveToScreen}"
                             FontWeight="Bold"
+                            Foreground="{DynamicResource Foreground1}"
                             Style="{DynamicResource PrimaryButton}" />
                     </StackPanel>
                 </Border>
