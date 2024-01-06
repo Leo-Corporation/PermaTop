@@ -230,7 +230,7 @@
                             Grid.Row="3"
                             Grid.ColumnSpan="2"
                             Margin="5"
-                            Padding="5"
+                            Padding="2"
                             HorizontalAlignment="Center"
                             Background="{DynamicResource Accent}"
                             Click="ApplyBtn_Click"
