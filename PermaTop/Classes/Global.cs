@@ -343,6 +343,18 @@ public static class Global
 		}
 	}
 
+	public static void SetLaunchAtStart(bool launchAtStart)
+	{
+		var key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+		if (launchAtStart)
+		{
+			key?.SetValue("PermaTop", Environment.ProcessPath ?? $@"{AppContext.BaseDirectory}\PermaTop.exe");
+			return;
+		}
+		
+		key?.DeleteValue("PermaTop", false);
+	}
+
 	[DllImport("user32.dll")]
 	internal static extern IntPtr GetClassLong(IntPtr hWnd, int nIndex);
 

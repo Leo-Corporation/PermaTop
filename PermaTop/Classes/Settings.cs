@@ -31,11 +31,13 @@ public class Settings
 	public Languages Language { get; set; }
 	public bool IsFirstRun { get; set; }
 	public bool CheckUpdateOnStart { get; set; }
+	public bool? LaunchAtStart { get; set; }
 	public Settings()
 	{
 		Theme = Themes.System;
 		Language = Languages.Default;
 		IsFirstRun = true;
 		CheckUpdateOnStart = true;
+		LaunchAtStart = false;
 	}
 }

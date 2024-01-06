@@ -52,6 +52,9 @@ namespace PermaTop.Pages
 
 		private async void InitUI()
 		{
+			// Upgrade settings
+			Global.Settings.LaunchAtStart ??= false;
+
 			// About section
 			VersionTxt.Text = Global.Version; // Update the current version label
 
@@ -74,6 +77,7 @@ namespace PermaTop.Pages
 
 			// Checkboxes
 			UpdateOnStartChk.IsChecked = Global.Settings.CheckUpdateOnStart;
+			LaunchOnStartChk.IsChecked = Global.Settings.LaunchAtStart ?? false;
 
 			if (!Global.Settings.CheckUpdateOnStart) return;
 			try
@@ -263,5 +267,13 @@ namespace PermaTop.Pages
 			Global.Settings.CheckUpdateOnStart = UpdateOnStartChk.IsChecked ?? true;
 			XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
 		}
-	}
+
+		private void LaunchOnStartChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.LaunchAtStart = LaunchOnStartChk.IsChecked;
+			XmlSerializerManager.SaveToXml(Global.Settings, Global.SettingsPath);
+
+			Global.SetLaunchAtStart(Global.Settings.LaunchAtStart ?? false);
+		}
+    }
 }
