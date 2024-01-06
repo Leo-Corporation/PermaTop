@@ -315,10 +315,11 @@
                             x:Name="MoveBtn"
                             Padding="2"
                             HorizontalAlignment="Center"
-                            Background="Transparent"
+                            Background="{DynamicResource Accent}"
                             Click="MoveBtn_Click"
                             Content="{x:Static lang:Resources.SetPosition}"
                             FontWeight="Bold"
+                            Foreground="{DynamicResource Foreground1}"
                             Style="{DynamicResource PrimaryButton}" />
                     </StackPanel>
                 </Border>
