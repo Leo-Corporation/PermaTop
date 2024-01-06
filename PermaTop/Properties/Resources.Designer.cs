@@ -466,6 +466,15 @@ namespace PermaTop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PermaTop will start minimized in the system tray if you enable this option..
+        /// </summary>
+        public static string PermaTopOnStartInfo {
+            get {
+                return ResourceManager.GetString("PermaTopOnStartInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pin.
         /// </summary>
         public static string Pin {

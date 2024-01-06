@@ -352,6 +352,17 @@
                         Foreground="{DynamicResource Foreground1}"
                         Style="{DynamicResource CheckBoxStyle1}"
                         Unchecked="LaunchOnStartChk_Checked" />
+                    <StackPanel Margin="10 0 0 0" Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontFamily="..\Fonts\#FluentSystemIcons-Regular"
+                            FontSize="14"
+                            Text="&#xF4A4;" />
+                        <TextBlock
+                            Margin="5 0 0 0"
+                            VerticalAlignment="Center"
+                            Text="{x:Static lang:Resources.PermaTopOnStartInfo}" />
+                    </StackPanel>
                 </StackPanel>
             </Expander>
             <Expander

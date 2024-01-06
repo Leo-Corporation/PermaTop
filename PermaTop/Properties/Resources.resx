@@ -301,4 +301,7 @@
   <data name="LaunchOnStart" xml:space="preserve">
     <value>Launch PermaTop at Windows startup</value>
   </data>
+  <data name="PermaTopOnStartInfo" xml:space="preserve">
+    <value>PermaTop will start minimized in the system tray if you enable this option.</value>
+  </data>
 </root>
