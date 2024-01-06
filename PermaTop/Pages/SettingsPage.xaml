@@ -352,7 +352,7 @@
                         Foreground="{DynamicResource Foreground1}"
                         Style="{DynamicResource CheckBoxStyle1}"
                         Unchecked="LaunchOnStartChk_Checked" />
-                    <StackPanel Margin="10 0 0 0" Orientation="Horizontal">
+                    <StackPanel Margin="10 0 0 10" Orientation="Horizontal">
                         <TextBlock
                             VerticalAlignment="Center"
                             FontFamily="..\Fonts\#FluentSystemIcons-Regular"
