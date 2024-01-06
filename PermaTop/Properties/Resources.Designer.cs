@@ -313,6 +313,15 @@ namespace PermaTop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Launch PermaTop at Windows startup.
+        /// </summary>
+        public static string LaunchOnStart {
+            get {
+                return ResourceManager.GetString("LaunchOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licenses.
         /// </summary>
         public static string Licenses {

@@ -298,4 +298,7 @@
   <data name="UnPin" xml:space="preserve">
     <value>Unpin</value>
   </data>
+  <data name="LaunchOnStart" xml:space="preserve">
+    <value>Launch PermaTop at Windows startup</value>
+  </data>
 </root>

@@ -318,4 +318,7 @@
   <data name="UnPin" xml:space="preserve">
     <value>Désépingler</value>
   </data>
+  <data name="LaunchOnStart" xml:space="preserve">
+    <value>Lancer PermaTop lors du démarrage de Windows</value>
+  </data>
 </root>
