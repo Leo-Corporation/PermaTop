@@ -230,7 +230,7 @@
                             Grid.Row="3"
                             Grid.ColumnSpan="2"
                             Margin="5"
-                            Padding="5"
+                            Padding="2"
                             HorizontalAlignment="Center"
                             Background="{DynamicResource Accent}"
                             Click="ApplyBtn_Click"
@@ -270,6 +270,7 @@
                             Click="SetPosBtn_Click"
                             Content="{x:Static lang:Resources.SetPosition}"
                             FontWeight="Bold"
+                            Foreground="{DynamicResource Foreground1}"
                             Style="{DynamicResource PrimaryButton}" />
                         <Button
                             x:Name="SetScreenBtn"
@@ -279,6 +280,7 @@
                             Click="SetScreenBtn_Click"
                             Content="{x:Static lang:Resources.MoveToScreen}"
                             FontWeight="Bold"
+                            Foreground="{DynamicResource Foreground1}"
                             Style="{DynamicResource PrimaryButton}" />
                     </StackPanel>
                 </Border>
@@ -313,10 +315,11 @@
                             x:Name="MoveBtn"
                             Padding="2"
                             HorizontalAlignment="Center"
-                            Background="Transparent"
+                            Background="{DynamicResource Accent}"
                             Click="MoveBtn_Click"
                             Content="{x:Static lang:Resources.SetPosition}"
                             FontWeight="Bold"
+                            Foreground="{DynamicResource Foreground1}"
                             Style="{DynamicResource PrimaryButton}" />
                     </StackPanel>
                 </Border>

@@ -48,7 +48,7 @@ public static class Global
 	internal static string SettingsPath => $@"{FileSys.AppDataPath}\Léo Corporation\PermaTop\Settings.xml";
 	public static Settings Settings { get; set; } = XmlSerializerManager.LoadFromXml<Settings>(SettingsPath) ?? new();
 
-	public static string Version => "1.3.0.2311";
+	public static string Version => "1.4.0.2401";
 	public static string LastVersionLink => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/PermaTop/Version.txt";
 
 	public static string GetHiSentence
@@ -341,6 +341,18 @@ public static class Global
 			default: // No language
 				break;
 		}
+	}
+
+	public static void SetLaunchAtStart(bool launchAtStart)
+	{
+		var key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+		if (launchAtStart)
+		{
+			key?.SetValue("PermaTop", Environment.ProcessPath ?? $@"{AppContext.BaseDirectory}\PermaTop.exe");
+			return;
+		}
+		
+		key?.DeleteValue("PermaTop", false);
 	}
 
 	[DllImport("user32.dll")]

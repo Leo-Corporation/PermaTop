@@ -313,6 +313,15 @@ namespace PermaTop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Launch PermaTop at Windows startup.
+        /// </summary>
+        public static string LaunchOnStart {
+            get {
+                return ResourceManager.GetString("LaunchOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licenses.
         /// </summary>
         public static string Licenses {
@@ -453,6 +462,15 @@ namespace PermaTop.Properties {
         public static string PermaTop {
             get {
                 return ResourceManager.GetString("PermaTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PermaTop will start minimized in the system tray if you enable this option..
+        /// </summary>
+        public static string PermaTopOnStartInfo {
+            get {
+                return ResourceManager.GetString("PermaTopOnStartInfo", resourceCulture);
             }
         }
         

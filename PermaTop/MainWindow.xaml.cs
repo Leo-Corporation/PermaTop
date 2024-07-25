@@ -38,6 +38,10 @@ public partial class MainWindow : Window
 	{
 		InitializeComponent();
 		InitUI();
+		if (Global.Settings.LaunchAtStart ?? false)
+		{
+			HideMenu_Click(this, null);
+		}
 	}
 
 	private void InitUI()
@@ -50,7 +54,7 @@ public partial class MainWindow : Window
 			CheckButton(SettingsPageBtn);
 		};
 
-		WindowsMenu.Loaded += (o, e) => { GenerateMenu(); };
+		WindowsMenu.Loaded += (o, e) => { GenerateMenu(); };		
 	}
 
 	private void CheckButton(Button btn)
@@ -73,6 +77,11 @@ public partial class MainWindow : Window
 
 	private void CloseBtn_Click(object sender, RoutedEventArgs e)
 	{
+		if (Global.Settings.LaunchAtStart ?? false)
+		{
+			HideMenu_Click(sender, e);
+			return;
+		}
 		Application.Current.Shutdown();
 	}
 
@@ -105,7 +114,6 @@ public partial class MainWindow : Window
 	bool isHidden = false;
 	private void HideMenu_Click(object sender, RoutedEventArgs e)
 	{
-
 		isHidden = !isHidden;
 		if (isHidden)
 		{

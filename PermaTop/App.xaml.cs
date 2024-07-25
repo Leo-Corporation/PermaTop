@@ -45,7 +45,8 @@ public partial class App : Application
 
 		if (!Global.Settings.IsFirstRun)
 		{
-			new MainWindow().Show();
+			var mw = new MainWindow();
+			if (Global.Settings.LaunchAtStart == false) mw.Show();
 		}
 		else
 		{
